@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
 import LoginForm from '../components/forms/LoginForm'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { authApi } from '../services/authApi'
+import { useAppContext } from '../contexts/AppContext'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-
+const {setUser}=useAppContext();
   const [errorMessage,setErrorMessage]=useState<string>("")
+  const { showToast,isLoggedIn } = useAppContext();
+  const queryClient = useQueryClient();
+const navigate = useNavigate();
+
+
+
+
   const {mutate}=useMutation({
     mutationFn:({email,password})=>{
       return authApi.login({email,password})
     },
-    onSuccess:()=>{
+    onSuccess:(data)=>{
+      setUser(data)
+      // navigate("/")
+  showToast({message:"Wiaj, milo Cie widziec",type:"SUCCESS"});
   
     }
     ,

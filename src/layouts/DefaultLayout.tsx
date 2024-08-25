@@ -1,9 +1,73 @@
 import React from 'react';
+import { useAppContext } from '../contexts/AppContext';
+import { Navigate, Outlet } from 'react-router-dom';
+import Sidebar from '../components/core/Sidebar';
+import Navbar from '../components/core/Navbar';
+
+
+const data = [
+  {
+    _id: "65c5bbf3787832cf99f28e6d",
+    team: [
+      "65c202d4aa62f32ffd1303cc",
+      "65c27a0e18c0a1b750ad5cad",
+      "65c30b96e639681a13def0b5",
+    ],
+    text: "New task has been assigned to you ",
+    task: null,
+    notiType: "alert",
+    isRead: [],
+    createdAt: "2024-02-09T05:45:23.353Z",
+    updatedAt: "2024-02-09T05:45:23.353Z",
+    __v: 0,
+  },
+  {
+    _id: "65c5f12ab5204a81bde866ab",
+    team: [
+      "65c202d4aa62f32ffd1303cc",
+      "65c30b96e639681a13def0b5",
+      "65c317360fd860f958baa08e",
+    ],
+    text: "New task has been assigned to you ",
+    task: {
+      _id: "65c5f12ab5204a81bde866a9",
+      title: "Test task",
+    },
+    notiType: "alert",
+    isRead: [],
+    createdAt: "2024-02-09T09:32:26.810Z",
+    updatedAt: "2024-02-09T09:32:26.810Z",
+    __v: 0,
+  },
+];
+
 
 const DefaultLayout = () => {
-  return (
-    <div>DefaultLayout</div>
-  )
+  const{user,isLoading}=useAppContext();
+
+
+
+if(user){
+  return  (
+    <div className='w-full h-screen flex flex-col md:flex-row'>
+      <div className='w-[260px] h-screen bg-white sticky top-0 hidden md:block'>
+        <Sidebar />
+      </div>
+   
+      {/* <MobileSidebar />  */}
+  
+      <div className='flex-1 overflow-y-auto'>
+        <Navbar  notifications={data}/>
+  
+        <div className='p-4 2xl:px-10'>
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  ) 
+  }
+
+
 }
 
 export default DefaultLayout
