@@ -38,10 +38,10 @@ const onSubmit = handleSubmit((data)=>{
     >
       <div className=''>
         <p className='text-blue-600 text-3xl font-bold text-center'>
-          Załóż konto
+         Zaloguj się
         </p>
-        <p className='text-center text-base text-gray-700 '>
-          Keep all your credential safge.
+        <p className='text-center text-base text-gray-600 mt-4 '>
+       i korzystaj z gotowych szablonów odpowiedzi
         </p>
       </div>
   
