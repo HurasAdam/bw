@@ -8,7 +8,10 @@ import { AppContextProvider } from "./contexts/AppContext";
 import Deparments from "./pages/Deparments";
 import HelpdeskPage from "./pages/HelpdeskPage";
 import DepartmentsLayouts from "./layouts/DepartmentsLayouts";
-import EcommercePage from "./pages/EcommercePage";
+
+import SalesPage from "./pages/SalesPage";
+import AdministrationPage from "./pages/AdministrationPage";
+import AppointmentPage from "./pages/AppointmentPage";
 
 function App() {
     return (
@@ -17,8 +20,11 @@ function App() {
 <Route element={<DefaultLayout/>}>
 <Route path="/" element={<Dashboard/>}/>
 <Route path="departments" element={<Deparments/>}>
-<Route path="hd" element={<HelpdeskPage/>}/>
-<Route path="ec" element={<EcommercePage/>}/>
+<Route index element={<Navigate to="helpdesk" replace />} />
+<Route index path="helpdesk" element={<HelpdeskPage/>}/>
+<Route path="sales" element={<SalesPage/>}/>
+<Route path="administration" element={<AdministrationPage/>}/>
+<Route path="appointment" element={<AppointmentPage/>}/>
 </Route>
 </Route>
 
