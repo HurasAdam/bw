@@ -3,11 +3,11 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom'
 
 
 const tabs =[
-    {label:"hd",link:"hd"},
-    {label:"Ecommerce",link:"ec"},
-    {label:"hd",link:"hd"},
-    {label:"hd",link:"hd"},
-    {label:"hd",link:"hd"},
+    {label:"Pomoc techniczna",link:"helpdesk"},
+    {label:"Sprzedaż i szkolenia",link:"sales "},
+    {label:"Administracja",link:"administration"},
+    {label:"Dział umawiania spotkań ",link:"appointment "},
+  
 ]
 
 const Deparments:React.FC = () => {
@@ -15,7 +15,7 @@ const Deparments:React.FC = () => {
 
     console.log(location)
   return (
-    <div className=''>
+    <div className='h-[calc(100vh-6rem)] bg-white'>
    {/*  */}
 
 
