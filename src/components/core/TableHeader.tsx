@@ -11,7 +11,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ headers }) => {
         {headers.map((header, index) => (
           <th
             key={index}
-            className={`text-base text-sm py-2.5 ${index === headers.length - 1 ? 'hidden md:block' : ''}`}
+            className={` text-sm py-2.5 ${index === headers.length - 1 ? 'hidden md:block' : ''}`}
           >
             {header}
           </th>

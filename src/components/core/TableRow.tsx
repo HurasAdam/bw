@@ -18,12 +18,12 @@ interface TableRowProps {
 }
 
 const TableRow: React.FC<TableRowProps> = ({ data }) => (
-  <tr className='border-b  border-gray-300 text-gray-600 hover:bg-gray-300/10'>
-    <td className='py-2'>{data.firstName}</td>
-    <td className='py-2'>{data.lastName}</td>
-    <td className='py-2'>{data.internalNumber}</td>
-    <td className='py-2'>{data.email}</td>
-    <td className='py-2'> {/* Optional additional data, e.g., department */} </td>
+  <tr className='border-b text-[15px] border-gray-300 text-gray-600 hover:bg-gray-300/10'>
+    <td className='py-2.5'>{data.firstName}</td>
+    <td className='py-2.5'>{data.lastName}</td>
+    <td className='py-2.5'>{data.internalNumber}</td>
+    <td className='py-2.5'>{data.email}</td>
+    <td className='py-2.5'> {/* Optional additional data, e.g., department */} </td>
   </tr>
 );
 
