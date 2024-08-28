@@ -2,6 +2,7 @@ import React from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 
+
 // import { setOpenSidebar } from "../redux/authSlice";
 
 
@@ -9,6 +10,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { authApi } from "../../services/authApi";
 import NotificationPanel from "./NotificationPanel";
 import UserAvatar from "./userAvatar";
+import Drawer from "./Drawer";
 
 
 const Navbar:React.FC = ({notifications}) => {
@@ -50,9 +52,12 @@ type="text" />
 </div>
        </div>
 
-<div className="flex gap-2 items-center">
+<div className="flex gap-3 items-center">
+
 <NotificationPanel notifications={notifications}/>
+<Drawer/>
 <UserAvatar logoutHandler={logoutHandler}/>
+
 </div>
 
     </div>

@@ -1,30 +1,65 @@
-import React from 'react';
-import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdKeyboardDoubleArrowUp } from 'react-icons/md';
-
-const ICONS = {
-  high: <MdKeyboardDoubleArrowUp />,
-  medium: <MdKeyboardArrowUp />,
-  low: <MdKeyboardArrowDown />,
-};
+import React, { useState, useEffect } from 'react';
 
 interface TableRowProps {
-  data: {
-    id: number;
-    firstName: string;
-    lastName: string;
-    internalNumber: string;
-    email: string;
-  };
+  data: Record<string, any>; // Dynamiczny obiekt danych
+  showId?: boolean;         // Prop do kontrolowania widoczności ID
+  currentUserId: string;    // ID aktualnie zalogowanego użytkownika
 }
 
-const TableRow: React.FC<TableRowProps> = ({ data }) => (
-  <tr className='border-b text-[15px] border-gray-300 text-gray-600 hover:bg-gray-300/10'>
-    <td className='py-2.5'>{data.firstName}</td>
-    <td className='py-2.5'>{data.lastName}</td>
-    <td className='py-2.5'>{data.internalNumber}</td>
-    <td className='py-2.5'>{data.email}</td>
-    <td className='py-2.5'> {/* Optional additional data, e.g., department */} </td>
-  </tr>
-);
+const TableRow: React.FC<TableRowProps> = ({ data, showId = false, currentUserId,showTextarea }) => {
+  const [note, setNote] = useState<string>('');
+
+  // Ładowanie notatki z localStorage przy montowaniu komponentu
+  useEffect(() => {
+    if (currentUserId) {
+      const storedNote = localStorage.getItem(`note-${currentUserId}-${data.id}`);
+      if (storedNote) {
+        setNote(storedNote);
+      }
+    }
+  }, [currentUserId, data.id]);
+
+  // Funkcja do obsługi zmiany wartości w textarea
+  const handleNoteChange = (value: string) => {
+    setNote(value);
+  };
+
+  // Funkcja do zapisywania notatki do localStorage
+  const saveNoteToLocalStorage = () => {
+    if (currentUserId) {
+      localStorage.setItem(`note-${currentUserId}-${data.id}`, note);
+      alert('Note saved!');
+    }
+  };
+
+  return (
+    <tr className='text-[15px] border-b-[1.5px] border-gray-200 text-gray-600 hover:bg-gray-300/10'>
+      {showId && <td className='py-2.5'>{data.id}</td>}
+      {Object.keys(data).map((key) => {
+        if (key !== 'id') {
+          return (
+            <td key={key} className='py-2.5'>
+              {data[key]}
+            </td>
+          );
+        }
+        return null;
+      })}
+{showTextarea&&      <td className='py-2.5 flex flex-col'>
+        <textarea
+          value={note}
+          onChange={(e) => handleNoteChange(e.target.value)}
+          className='border rounded p-1 w-full h-20 resize-none mb-2'
+          placeholder='Add a note...'
+        />
+        <button
+          onClick={saveNoteToLocalStorage}
+          className='bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600'>
+          Save Note
+        </button>
+      </td>}
+    </tr>
+  );
+};
 
 export default TableRow;
