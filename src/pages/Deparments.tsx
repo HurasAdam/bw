@@ -13,7 +13,7 @@ const Deparments: React.FC = () => {
   const currentPath = pathname.split('/').pop() || '';
 
   return (
-    <div className='h-[calc(100vh-6rem)] bg-white px-10 py-5'>
+    <div className='min-h-[calc(100vh-6rem)] bg-white px-10 py-5 rounded-xs'>
       <h2 className='text-2xl mb-11 font-bold text-gray-600'>Działy i kontakty</h2>
 
       <ul className="hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">

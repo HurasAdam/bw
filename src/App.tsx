@@ -12,6 +12,7 @@ import DepartmentsLayouts from "./layouts/DepartmentsLayouts";
 import SalesPage from "./pages/SalesPage";
 import AdministrationPage from "./pages/AdministrationPage";
 import AppointmentPage from "./pages/AppointmentPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
 <Route element={<DefaultLayout/>}>
 <Route path="/" element={<Dashboard/>}/>
+<Route path="search" element={<SearchPage/>}/>
 <Route path="departments" element={<Deparments/>}>
 <Route index element={<Navigate to="helpdesk" replace />} />
 <Route index path="helpdesk" element={<HelpdeskPage/>}/>

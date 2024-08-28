@@ -8,9 +8,9 @@ import data from '../data';
 
 const HelpdeskPage: React.FC = () => {
   return (
-    <div >
+    <div className='' >
     
-        <Table headers={data.headers} data={data.users} />
+        <Table headers={data.headers} data={data.users} showTextarea={true}  />
       
     </div>
   );
