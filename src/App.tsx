@@ -13,6 +13,7 @@ import SalesPage from "./pages/SalesPage";
 import AdministrationPage from "./pages/AdministrationPage";
 import AppointmentPage from "./pages/AppointmentPage";
 import SearchPage from "./pages/SearchPage";
+import CreateArticlePage from "./pages/CreateArticlePage";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
 <Route element={<DefaultLayout/>}>
 <Route path="/" element={<Dashboard/>}/>
 <Route path="search" element={<SearchPage/>}/>
+<Route path="arcticle/new" element={<CreateArticlePage/>}/>
 <Route path="departments" element={<Deparments/>}>
 <Route index element={<Navigate to="helpdesk" replace />} />
 <Route index path="helpdesk" element={<HelpdeskPage/>}/>

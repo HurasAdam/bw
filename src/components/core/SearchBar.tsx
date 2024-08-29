@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input } from '@headlessui/react'
 
-const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }) => {
+const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch,className }) => {
   const [query, setQuery] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +15,7 @@ const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }
       placeholder="Search"
       value={query}
       onChange={handleChange}
-      className="border rounded p-2 w-full"
+      className={`${className} border rounded p-2 w-full`}
     />
   );
 };
