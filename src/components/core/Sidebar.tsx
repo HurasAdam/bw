@@ -76,7 +76,7 @@ const Sidebar: React.FC = () => {
       <Link
         onClick={closeSidebar}
         className={clsx(
-          "w-full lg:w-[95%] flex gap-2 px-3 py-2 rounded-full items-center text-gray-800 text-base hover:bg-[#2564ed2d]",
+          "w-full lg:w-[95%] flex gap-2 px-3 py-2 rounded-full items-center text-indigo-200 text-base hover:bg-[#2564ed2d]",
           path === link.split("/")[0] ? "bg-blue-600 text-neutral-50" : ""
         )}
         to={link}

@@ -1,5 +1,7 @@
 import React from 'react'
 import ArticleCard from '../components/ArticleCard'
+import data from '../data'
+import Table from '../components/core/Table'
 
 const Dashboard = () => {
   return (
@@ -27,6 +29,7 @@ const Dashboard = () => {
 
 <div className='flex flex-col gap-2'>
    
+{/* <ArticleCard/>
 <ArticleCard/>
 <ArticleCard/>
 <ArticleCard/>
@@ -34,8 +37,8 @@ const Dashboard = () => {
 <ArticleCard/>
 <ArticleCard/>
 <ArticleCard/>
-<ArticleCard/>
-<ArticleCard/>
+<ArticleCard/> */}
+        <Table headers={data.headers} data={data.users}  />
 
 </div>
 

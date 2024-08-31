@@ -6,7 +6,7 @@ interface TableRowProps {
   currentUserId: string;    // ID aktualnie zalogowanego użytkownika
 }
 
-const TableRow: React.FC<TableRowProps> = ({ data, showId = false, currentUserId,showTextarea }) => {
+const TableRow: React.FC<TableRowProps> = ({ data, showId = false, currentUserId,showTextarea,className }) => {
   const [note, setNote] = useState<string>('');
 
   // Ładowanie notatki z localStorage przy montowaniu komponentu
@@ -33,12 +33,12 @@ const TableRow: React.FC<TableRowProps> = ({ data, showId = false, currentUserId
   };
 
   return (
-    <tr className='text-[15px] border-b-[1.5px] border-gray-200 text-gray-600 hover:bg-gray-300/10'>
+    <tr className='text-[15px] text-gray-600 hover:bg-gray-300/10'>
       {showId && <td className='py-2.5'>{data.id}</td>}
       {Object.keys(data).map((key) => {
         if (key !== 'id') {
           return (
-            <td key={key} className='py-2.5'>
+            <td key={key} className='p-4'>
               {data[key]}
             </td>
           );

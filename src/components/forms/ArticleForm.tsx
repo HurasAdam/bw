@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import TextBox from '../core/TextBox';
 import Button from '../core/Button';
@@ -10,13 +10,9 @@ interface ILoginFormProps {
   errorMessage?: string;
 }
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
 
-const ArticleForm: React.FC<ILoginFormProps> = ({ onSave, errorMessage }) => {
+
+const ArticleForm: React.FC<ILoginFormProps> = ({ onSave, errorMessage,tags }) => {
   const { register, formState: { errors }, handleSubmit } = useForm({
     defaultValues: {
       title: "",
@@ -26,6 +22,15 @@ const ArticleForm: React.FC<ILoginFormProps> = ({ onSave, errorMessage }) => {
     },
     mode: "onChange",
   });
+
+
+  const tagOptions = useMemo(() => 
+    tags?.map(tag => ({
+      value: tag._id,
+      label: tag.name
+    }))
+  , [tags]);
+
 
   const onSubmit = handleSubmit((data) => {
     onSave(data);
@@ -48,7 +53,7 @@ const ArticleForm: React.FC<ILoginFormProps> = ({ onSave, errorMessage }) => {
   return (
     <form
       onSubmit={onSubmit}
-      className='form-container grid grid-cols-[3fr_2fr] gap-x-16 gap-y-8 py-10 bg-white w-full h-full'
+      className='form-container grid grid-cols-[3fr_2fr] gap-x-14 gap-y-8 py-10 bg-white w-full h-full'
     >
       <div className='flex flex-col gap-10 h-fit'>
         <TextBox
@@ -114,12 +119,14 @@ const ArticleForm: React.FC<ILoginFormProps> = ({ onSave, errorMessage }) => {
           {errors.employerDescription && <span className='text-[11px] text-rose-500 font-semibold mt-0.5'>{errors.employerDescription.message}</span>}
         </div>
  <div>
-  <label htmlFor="tags">Wybierz Tag</label>
+  <label className=' block mb-1.5 ' htmlFor="tags">Wybierz Tag</label>
  <Select 
  id="tags"
           closeMenuOnSelect={true}
-          options={options}
+          options={tagOptions}
           isMulti={true}
+          isSearchable ={true}
+          placeholder="Wybierz Tag"
         />
  </div>
       </div>
