@@ -46,7 +46,6 @@ const sidebarLinks = [
     link: "in-progress/in progress",
     icon: <MdOutlinePendingActions />,
   },
-
 ];
 
 const Sidebar: React.FC = () => {
@@ -93,7 +92,7 @@ const Sidebar: React.FC = () => {
         <p className="bg-blue-600 p-2 rounded-full">
           <IoLogoFirebase className="text-white text-2xl font-black" />
         </p>
-        <span className="text-2xl font-bold text-indigo-900">Baza wiedzy</span>
+        <span className="text-2xl font-bold text-slate-300">Baza wiedzy</span>
       </h1>
 
       <div className="flex-1 flex flex-col gap-1 py-8">

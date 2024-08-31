@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 
 interface TableHeaderProps {
   headers: string[];
   showId: boolean;
 }
 
-const TableHeader: React.FC<TableHeaderProps> = ({ headers, showId }) => (
-  <thead>
-    <tr>
-      {showId && <th>ID</th>}
+const TableHeader: React.FC<TableHeaderProps> = ({ headers }) => (
+  <thead className="bg-blue-50  border-indigo-100 min-w-full ">
+    <tr className="w-full">
       {headers.map((header, index) => (
         <th key={index}>{header}</th>
       ))}
