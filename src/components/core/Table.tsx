@@ -38,7 +38,7 @@ const Table: React.FC<TableProps> = ({
           showAction={showAction}
         />
         <tbody>
-          {data.map((item) => (
+          {data?.map((item) => (
             <TableRow
               showAction={showAction}
               className=""
