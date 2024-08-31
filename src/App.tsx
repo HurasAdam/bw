@@ -17,7 +17,7 @@ import CreateArticlePage from "./pages/CreateArticlePage";
 
 function App() {
     return (
-      <main className="w-full min-h-screen bg-[#f3f4f6] ">
+      <main className="w-full min-h-screen bg-main ">
       <Routes>
 <Route element={<DefaultLayout/>}>
 <Route path="/" element={<Dashboard/>}/>

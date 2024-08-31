@@ -21,11 +21,11 @@ const Table: React.FC<TableProps> = ({ headers, data, showId = false, showTextar
 
   return (
     <div className='overflow-x-auto'>
-      <table className='table table-sm'>
+      <table className='table table-md '>
         <TableHeader headers={tableHeaders} showId={showId} />
-        <tbody>
+        <tbody className=''>
           {data.map((item) => (
-            <TableRow key={item.id} data={item} showId={showId} showTextarea={showTextarea} />
+            <TableRow className="" key={item.id} data={item} showId={showId} showTextarea={showTextarea} />
           ))}
         </tbody>
       </table>

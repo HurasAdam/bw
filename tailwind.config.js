@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        main:"rgb(18, 43, 72)"
+      }
+    },
   },
-  plugins: [ require('daisyui'),],
+  plugins: [ require('daisyui'),require('tailwind-scrollbar'),],
 }

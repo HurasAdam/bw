@@ -34,7 +34,7 @@ queryClient.invalidateQueries(["validateToken"])
 
 
   return (
-    <div className="flex justify-between items-center bg-white px-4 py-3 2xl:py-2.5 sticky z-10 top-0">
+    <div className="flex justify-between items-center bg-white px-4 py-3 2xl:py-2.5 sticky z-10 top-0 border-b rounded-tl-2xl ">
 
        <div className="flex gap-4">
 <button 

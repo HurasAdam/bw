@@ -50,16 +50,17 @@ const DefaultLayout = () => {
 if(user){
   return  (
     <div className='w-full h-screen flex flex-col md:flex-row'>
-      <div className='w-[245px] h-screen bg-white sticky top-0 hidden md:block'>
+      <div className='w-[245px] h-screen bg-blue-950 sticky top-0 hidden md:block'>
         <Sidebar />
       </div>
    
       {/* <MobileSidebar />  */}
   
-      <div className='flex-1 overflow-y-auto'>
-        <Navbar  notifications={data}/>
+      <div className='flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-white '>
+ 
   
-        <div className='p-4 2xl:px-10'>
+        <div className='px-5  bg-white rounded-tl-2xl rounded-bl-2xl min-h-full h-fit'>
+        <Navbar  notifications={data}/>
           <Outlet />
         </div>
       </div>
