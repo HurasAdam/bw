@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import React from "react";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const tabs = [
   { label: "Pomoc techniczna", link: "helpdesk" },
@@ -10,11 +10,13 @@ const tabs = [
 
 const Deparments: React.FC = () => {
   const { pathname } = useLocation();
-  const currentPath = pathname.split('/').pop() || '';
+  const currentPath = pathname.split("/").pop() || "";
 
   return (
-    <div className='min-h-[calc(100vh-6rem)] bg-white px-10 py-5 rounded-xs'>
-      <h2 className='text-2xl mb-11 font-bold text-gray-600'>Działy i kontakty</h2>
+    <div className="min-h-[calc(100vh-6rem)] bg-white p-5  rounded-xs">
+      <h2 className="text-2xl mb-11 font-bold text-gray-600">
+        Działy i kontakty
+      </h2>
 
       <ul className="hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
         {tabs.map(({ label, link }) => (
@@ -23,7 +25,11 @@ const Deparments: React.FC = () => {
               to={link}
               className={({ isActive }) =>
                 `inline-block w-full p-4 border-s-0 border-gray-200 dark:border-gray-700 rounded-e-lg 
-                ${isActive ? 'bg-indigo-200 text-white font-bold' : 'bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-50'}
+                ${
+                  isActive
+                    ? "bg-indigo-200 text-white font-bold"
+                    : "bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+                }
                  dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700`
               }
             >

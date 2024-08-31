@@ -1,6 +1,6 @@
-import React from 'react';
-import TableRow from './TableRow';
-import TableHeader from './TableHeader';
+import React from "react";
+import TableRow from "./TableRow";
+import TableHeader from "./TableHeader";
 
 interface TableProps {
   headers: string[];
@@ -15,17 +15,38 @@ interface TableProps {
   showId?: boolean; // Prop is optional and controls the visibility of the 'ID' column
 }
 
-const Table: React.FC<TableProps> = ({ headers, data, showId = false, showTextarea }) => {
-  // Conditionally include 'ID' in the headers if showId is true
-  const tableHeaders = showId ? ['ID', ...headers] : headers;
+const Table: React.FC<TableProps> = ({
+  showAction,
+  headers,
+  data,
+  showId = false,
+  showTextarea,
+}) => {
+  let tableHeaders = showId ? ["ID", ...headers] : headers;
+
+  // Conditionally include 'Actions' in the headers if showAction is true
+  if (showAction) {
+    tableHeaders = [...tableHeaders, "Akcje"];
+  }
 
   return (
-    <div className='overflow-x-auto'>
-      <table className='table table-md '>
-        <TableHeader headers={tableHeaders} showId={showId} />
-        <tbody className=''>
+    <div className="overflow-x-auto  border rounded ">
+      <table className="table table-md ">
+        <TableHeader
+          headers={tableHeaders}
+          showId={showId}
+          showAction={showAction}
+        />
+        <tbody>
           {data.map((item) => (
-            <TableRow className="" key={item.id} data={item} showId={showId} showTextarea={showTextarea} />
+            <TableRow
+              showAction={showAction}
+              className=""
+              key={item.id}
+              data={item}
+              showId={showId}
+              showTextarea={showTextarea}
+            />
           ))}
         </tbody>
       </table>
