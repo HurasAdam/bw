@@ -6,6 +6,7 @@ export default {
       colors: {
         main: "rgb(18, 43, 72)",
         "tag-light": "rgb(79, 143, 191)",
+        secondary: "rgb(234, 107, 84)",
       },
     },
   },

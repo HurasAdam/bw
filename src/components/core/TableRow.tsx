@@ -54,11 +54,11 @@ const TableRow: React.FC<TableRowProps> = ({
   };
 
   return (
-    <tr className="  hover:bg-gray-300/10  ">
-      {showId && <td className="py-2.5 ">{data.id}</td>}
+    <tr className="  hover:bg-gray-300/10 border-b-blue-100 ">
+      {showId && <td className="py-2.5 ">{data._id}</td>}
 
       {Object.keys(data).map((key) => {
-        if (key !== "id") {
+        if (key !== "_id") {
           return (
             <td className="" key={key}>
               {key === "isVerified" ? (
@@ -71,14 +71,14 @@ const TableRow: React.FC<TableRowProps> = ({
                 <div className="flex flex-wrap gap-x-1 gap-y-2 max-w-[400px]">
                   {(data[key] as string[]).map((tag) => (
                     <span
-                      key={tag}
+                      key={tag?._id}
                       className="bg-tag-light text-white px-2.5 py-1.5 rounded-lg text-xs "
                     >
-                      {tag}
+                      {tag?.name}
                     </span>
                   ))}
                 </div>
-              ) : key === "createdAt" ? (
+              ) : key === "updatedAt" ? (
                 <span className="font-semibold text-slate-500 text-xs">
                   {" "}
                   {formatDate(data[key])}
