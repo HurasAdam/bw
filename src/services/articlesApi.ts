@@ -58,9 +58,24 @@ const incrementArticleViewsCounter = async ({ id }: { id: string }) => {
   );
   return data;
 };
+
+const getFavouriteArticles = async () => {
+  const config = {
+    withCredentials: true,
+  };
+
+  const { data } = await axios.get(
+    `http://localhost:8000/api/articles/favourites`,
+
+    config
+  );
+  return data;
+};
+
 export const articlesApi = {
   createArticle,
   getAllArticles,
   getArticle,
   incrementArticleViewsCounter,
+  getFavouriteArticles,
 };
