@@ -15,6 +15,7 @@ import AppointmentPage from "./pages/AppointmentPage";
 import SearchPage from "./pages/SearchPage";
 import CreateArticlePage from "./pages/CreateArticlePage";
 import ArticleDetails from "./pages/ArticleDetails";
+import FavouritesPage from "./pages/FavouritesPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="search" element={<SearchPage />} />
           <Route path="arcticle/new" element={<CreateArticlePage />} />
           <Route path="arcticle/:id" element={<ArticleDetails />} />
+          <Route path="favourites" element={<FavouritesPage />} />
           {/*  */}
           <Route path="departments" element={<Deparments />}>
             <Route index element={<Navigate to="helpdesk" replace />} />
