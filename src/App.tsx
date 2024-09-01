@@ -14,31 +14,35 @@ import AdministrationPage from "./pages/AdministrationPage";
 import AppointmentPage from "./pages/AppointmentPage";
 import SearchPage from "./pages/SearchPage";
 import CreateArticlePage from "./pages/CreateArticlePage";
+import ArticleDetails from "./pages/ArticleDetails";
 
 function App() {
-    return (
-      <main className="w-full min-h-screen bg-main ">
+  return (
+    <main className="w-full min-h-screen bg-main ">
       <Routes>
-<Route element={<DefaultLayout/>}>
-<Route path="/" element={<Dashboard/>}/>
-<Route path="search" element={<SearchPage/>}/>
-<Route path="arcticle/new" element={<CreateArticlePage/>}/>
-<Route path="departments" element={<Deparments/>}>
-<Route index element={<Navigate to="helpdesk" replace />} />
-<Route index path="helpdesk" element={<HelpdeskPage/>}/>
-<Route path="sales" element={<SalesPage/>}/>
-<Route path="administration" element={<AdministrationPage/>}/>
-<Route path="appointment" element={<AppointmentPage/>}/>
-</Route>
-</Route>
+        <Route element={<DefaultLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="arcticle/new" element={<CreateArticlePage />} />
+          <Route path="arcticle/:id" element={<ArticleDetails />} />
+          {/*  */}
+          <Route path="departments" element={<Deparments />}>
+            <Route index element={<Navigate to="helpdesk" replace />} />
+            <Route index path="helpdesk" element={<HelpdeskPage />} />
+            <Route path="sales" element={<SalesPage />} />
+            <Route path="administration" element={<AdministrationPage />} />
+            <Route path="appointment" element={<AppointmentPage />} />
+          </Route>
+          {/*  */}
+        </Route>
 
-<Route element={<GuestLayout/>}>
-  <Route path="login" element={<Login/>}/>
-  <Route path="register" element={<Register/>}/>
-</Route>
+        <Route element={<GuestLayout />}>
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Route>
       </Routes>
     </main>
-    );
-  }
-  
-  export default App;
+  );
+}
+
+export default App;

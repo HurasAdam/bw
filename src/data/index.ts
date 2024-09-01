@@ -317,7 +317,7 @@ const articles = [
 ];
 
 const headers = ["Id", "First Name", "Last Name", "Internal Number", "Email"];
-const articleHeaders = ["Tytuł", "Tagi", "Data dodania", "Zweryfikowany"];
+const articleHeaders = ["Tytuł", "Tagi", "Zweryfikowany", "Data dodania"];
 
 const data = { users, headers, articles, articleHeaders };
 
