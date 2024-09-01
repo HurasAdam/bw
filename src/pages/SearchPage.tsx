@@ -21,9 +21,8 @@ const SearchPage = () => {
     queryKey: ["articles", searchParams],
   });
 
-  console.log(articles);
   return (
-    <div className="flex flex-col gap-10 p-5 ">
+    <div className="flex flex-col gap-4 p-5 ">
       <div className="sticky top-[61px] bg-white z-10 py-2">
         <SearchBar className="w-2/5 mx-auto " />
       </div>

@@ -34,7 +34,33 @@ const getAllArticles = async (searchParams) => {
   return data;
 };
 
+const getArticle = async ({ id }) => {
+  const config = {
+    withCredentials: true,
+  };
+
+  const { data } = await axios.get(
+    `http://localhost:8000/api/articles/article/${id}`,
+    config
+  );
+  return data;
+};
+
+const incrementArticleViewsCounter = async ({ id }: { id: string }) => {
+  const config = {
+    withCredentials: true,
+  };
+
+  const { data } = await axios.post(
+    `http://localhost:8000/api/articles/article/${id}/increment-views`,
+    {},
+    config
+  );
+  return data;
+};
 export const articlesApi = {
   createArticle,
   getAllArticles,
+  getArticle,
+  incrementArticleViewsCounter,
 };

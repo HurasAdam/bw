@@ -1,9 +1,8 @@
-import React from 'react';
-import { useAppContext } from '../contexts/AppContext';
-import { Navigate, Outlet } from 'react-router-dom';
-import Sidebar from '../components/core/Sidebar';
-import Navbar from '../components/core/Navbar';
-
+import React from "react";
+import { useAppContext } from "../contexts/AppContext";
+import { Navigate, Outlet } from "react-router-dom";
+import Sidebar from "../components/core/Sidebar";
+import Navbar from "../components/core/Navbar";
 
 const data = [
   {
@@ -41,34 +40,27 @@ const data = [
   },
 ];
 
-
 const DefaultLayout = () => {
-  const{user,isLoading}=useAppContext();
+  const { user, isLoading } = useAppContext();
 
+  if (user) {
+    return (
+      <div className="w-full h-screen flex flex-col md:flex-row">
+        <div className="w-[245px] h-screen bg-blue-950 sticky top-0 hidden md:block">
+          <Sidebar />
+        </div>
 
+        {/* <MobileSidebar />  */}
 
-if(user){
-  return  (
-    <div className='w-full h-screen flex flex-col md:flex-row'>
-      <div className='w-[245px] h-screen bg-blue-950 sticky top-0 hidden md:block'>
-        <Sidebar />
-      </div>
-   
-      {/* <MobileSidebar />  */}
-  
-      <div className='flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-white '>
- 
-  
-        <div className='px-5  bg-white rounded-tl-2xl rounded-bl-2xl min-h-full h-fit'>
-        <Navbar  notifications={data}/>
-          <Outlet />
+        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-white ">
+          <div className="px-5  bg-white rounded-tl-2xl rounded-bl-2xl min-h-full h-fit">
+            <Navbar notifications={data} />
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
-  ) 
+    );
   }
+};
 
-
-}
-
-export default DefaultLayout
+export default DefaultLayout;

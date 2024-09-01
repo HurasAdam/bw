@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
 import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
+import { NavLink } from "react-router-dom";
+import { utils } from "../../utils";
 
 interface TableRowProps {
   data: Record<string, any>; // Dynamiczny obiekt danych
@@ -43,18 +45,8 @@ const TableRow: React.FC<TableRowProps> = ({
     }
   };
 
-  const formatDate = (isoDate: string) => {
-    const date = new Date(isoDate);
-
-    return date.toLocaleString("pl-PL", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-  };
-
   return (
-    <tr className="  hover:bg-gray-300/10 border-b-blue-100 ">
+    <tr className="  hover:bg-blue-200/10  border-b-blue-100 ">
       {showId && <td className="py-2.5 ">{data._id}</td>}
 
       {Object.keys(data).map((key) => {
@@ -81,7 +73,7 @@ const TableRow: React.FC<TableRowProps> = ({
               ) : key === "updatedAt" ? (
                 <span className="font-semibold text-slate-500 text-xs">
                   {" "}
-                  {formatDate(data[key])}
+                  {utils.dateFormatter(data[key])}
                 </span>
               ) : (
                 <span className="font-semibold text-gray-600 text-[13px]">
@@ -111,7 +103,12 @@ const TableRow: React.FC<TableRowProps> = ({
       )}
       {showAction && (
         <td>
-          <Button className="bg-blue-500 rounded text-white" label="Zobacz" />
+          <NavLink
+            to={`/arcticle/${data?._id}`}
+            className=" rounded text-white bg-blue-500 outline-none py-2 px-3"
+          >
+            Zobacz
+          </NavLink>
         </td>
       )}
     </tr>

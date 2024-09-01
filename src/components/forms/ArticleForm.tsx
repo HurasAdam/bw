@@ -4,6 +4,8 @@ import TextBox from "../core/TextBox";
 import Button from "../core/Button";
 import * as types from "../../types/index";
 import Select from "react-select";
+import { IoCheckmarkCircle } from "react-icons/io5";
+import { MdOutlineNotInterested } from "react-icons/md";
 
 interface ILoginFormProps {
   onSave: (formData: types.ILoginFormData) => void;
@@ -16,6 +18,7 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
   tags,
 }) => {
   const {
+    watch,
     setValue,
     register,
     formState: { errors },
@@ -26,6 +29,7 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
       employeeDescription: "",
       clientDescription: "",
       tags: [],
+      isVerified: false,
     },
     mode: "onChange",
   });
@@ -47,6 +51,10 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
       })),
     [tags]
   );
+  const xd = watch("isVerified");
+  console.log(xd);
+
+  const isVerified = xd;
 
   const onSubmit = handleSubmit((data) => {
     onSave(data);
@@ -107,9 +115,7 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
             {errorMessage}
           </span>
         )}
-      </div>
 
-      <div className="flex flex-col gap-5">
         <div>
           <label className=" block mb-1.5 " htmlFor="employeeDescription">
             Odpowiedź dla pracownika
@@ -141,6 +147,9 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
             </span>
           )}
         </div>
+      </div>
+
+      <div className="flex flex-col gap-5">
         <div>
           <label className=" block mb-1.5 " htmlFor="tags">
             Wybierz Tag
@@ -155,7 +164,60 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
             onChange={handleChange}
           />
         </div>
+        {/*  */}
+
+        <div className="grid-row-5 gap-3 md:grid-cols-2 md:gap-3 lg:grid relative ">
+          {[
+            { label: "Zweryfikowany", value: true },
+            { label: "Nie zwerryfikowany", value: false },
+          ].map((option) => {
+            const isSelected = isVerified == option.value;
+            console.log(option);
+            return (
+              <label
+                htmlFor={option.label}
+                key={option.value.toString()}
+                className={`text-sm flex gap-1 text-gray-700 cursor-pointer rounded p-4 mt-3 truncate md:mt-2 ${
+                  isSelected
+                    ? "bg-green-300 text-white font-bold"
+                    : "bg-slate-300 text-white font-bold"
+                }`}
+              >
+                <input
+                  type="radio"
+                  {...register("isVerified", {
+                    required: "Określ poziom doświadczenia",
+                  })}
+                  name="isVerified"
+                  id={option?.label}
+                  value={option?.value}
+                  className="hidden"
+                />
+                {option?.label === "Zweryfikowany" ? (
+                  <span className="flex items-center w-full justify-center gap-x-8">
+                    {" "}
+                    <IoCheckmarkCircle className="w-5 h-5 text-green-600" />{" "}
+                    Zweryfikowany
+                  </span>
+                ) : (
+                  <span className="flex items-center w-full justify-center gap-x-8">
+                    {" "}
+                    <MdOutlineNotInterested className="w-5 h-5 text-rose-700" />{" "}
+                    Nie zweryfikowany
+                  </span>
+                )}
+              </label>
+            );
+          })}
+          {errors?.isVerified && (
+            <span className="text-xs text-rose-600 absolute bottom-[-20px]">
+              {errors?.isVerified?.message}
+            </span>
+          )}
+        </div>
+        {/*  */}
       </div>
+
       <Button
         type="submit"
         label="Utwórz"

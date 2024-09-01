@@ -14,17 +14,24 @@ const Pagination = ({ page, pages, onPageChange }: Props) => {
   }
 
   return (
-    <div className="flex justify-center  py-6">
+    <div className="flex justify-center  pb-5">
       <ul className="flex  border-slate-300">
         {pageNumbers.map((number) => {
           const active = page === number;
           return (
             <li
-              className={`px-[10px] rounded-md mx-[1.5px] border border-blue-200 text-slate-700  py-[2px] ${
-                active ? "bg-blue-500 border-blue-500 text-white" : ""
+              className={` rounded-md mx-[1.5px] border  text-slate-700 w-[30px] h-[30px] flex items-center justify-center transition-all hover:border-blue-800 ${
+                active
+                  ? "bg-blue-500 border-blue-500 text-white border-transparent"
+                  : ""
               }`}
             >
-              <button onClick={() => onPageChange(number)}>{number}</button>
+              <button
+                className="w-full h-full"
+                onClick={() => onPageChange(number)}
+              >
+                {number}
+              </button>
             </li>
           );
         })}
