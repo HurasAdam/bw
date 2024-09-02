@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTasks, FaTrashAlt, FaUsers } from "react-icons/fa";
+import { GoStarFill } from "react-icons/go";
 import {
   MdDashboard,
   MdOutlineAddTask,
@@ -37,9 +38,9 @@ const sidebarLinks = [
     icon: <MdTaskAlt />,
   },
   {
-    label: "In Progress",
-    link: "in-progress/in progress",
-    icon: <MdOutlinePendingActions />,
+    label: "Ulubione",
+    link: "favourites",
+    icon: <GoStarFill />,
   },
   {
     label: "Moj planer",
