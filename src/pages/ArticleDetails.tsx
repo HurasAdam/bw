@@ -13,10 +13,11 @@ import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { TiArrowBack } from "react-icons/ti";
+import ArticleDetailsSkeleton from "../components/ArticleDetailsSkeleton";
 
 const ArticleDetails: React.FC = () => {
   const { id } = useParams();
-  const { data: article } = useQuery({
+  const { data: article,isLoading,isFetching } = useQuery({
     queryFn: () => {
       return articlesApi.getArticle({ id });
     },
@@ -60,7 +61,22 @@ const ArticleDetails: React.FC = () => {
         ]),
   ];
 
+if(isLoading){
   return (
+    <ArticleDetailsSkeleton/>
+  )
+}
+
+if (isFetching && !isLoading) {
+
+  return (
+    <div className="bg-orange-200">FETCHUJE</div>
+  )
+}
+
+
+  return (
+
     <div className="p-12 flex flex-col gap-10">
       <div className="text-sm flex flex-col gap-3.5 text-slate-600 font-semibold">
         <div className="flex gap-1.5">
@@ -83,20 +99,20 @@ const ArticleDetails: React.FC = () => {
 
       <div className="grid grid-cols-[6fr_2fr] gap-10">
         <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-1.5 break-words break-all">
             <span className="text-blue-700/70 text-sm font-semibold">
               Odpowiedź dla pracownika HD
             </span>
-            <span className=" border block p-3 py-4  rounded-md  min-h-[160px] shadow-sm text-slate-700/92">
+            <span className="whitespace-pre-wrap border block p-3 py-4  rounded-md  min-h-[160px] shadow-sm text-slate-700/92">
               {article?.employeeDescription}
             </span>
           </div>
 
-          <div className="flex flex-col gap-1.5 ">
+          <div className="flex flex-col gap-1.5 break-words break-all ">
             <span className="text-blue-700/70 text-sm font-semibold ">
               Odpowiedz dla klienta
             </span>
-            <span className=" border block p-4 py-5 rounded-md min-h-[250px] shadow-sm text-slate-700/92">
+            <span className="whitespace-pre-wrap whitespace-normal border block p-4 py-5 rounded-md min-h-[250px] shadow-sm text-slate-700/92">
               {article?.clientDescription}
             </span>
           </div>

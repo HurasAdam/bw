@@ -39,11 +39,11 @@ const SearchPage = () => {
           />
         </div>
       )}
-      <Pagination
+ { articles?.pagination.pages >1  &&   <Pagination
         page={articles?.pagination.page || 1}
         pages={articles?.pagination.pages || 1}
         onPageChange={(page) => setPage(page)}
-      />
+      />}
     </div>
   );
 };

@@ -17,7 +17,7 @@ const FavouritesPage: React.FC = () => {
     <div>
       <Table
         headers={data.articleHeaders}
-        data={favourites}
+        data={favourites?.data}
         showId={true}
         showAction={true}
       />

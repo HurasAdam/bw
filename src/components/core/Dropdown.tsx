@@ -16,13 +16,18 @@ const Dropdown = ({ options = [] }) => {
             // Sprawdzenie dla opcji
             const isEditOption = label === "Edytuj";
             const isDeleteOption = label === "Usuń";
+            const isVerifyOption = label === "Zweryfikuj";
+            const isUnverifyOption = label === "Cofnij weryfikację";
 
             // Ustawienie klasy na podstawie opcji
             const hoverColorClass = isEditOption
               ? "hover:bg-blue-100 transition-all"
               : isDeleteOption
               ? "hover:bg-rose-100 transition-all"
-              : "hover:bg-gray-200 transition-all"; // domyślny kolor dla pozostałych opcji
+              :isVerifyOption 
+              ?"hover:bg-green-100 transtion-all"
+              :isUnverifyOption
+              ?"hover:bg-orange-100 transtion-all":""
 
             return (
               <li
