@@ -16,6 +16,7 @@ import SearchPage from "./pages/SearchPage";
 import CreateArticlePage from "./pages/CreateArticlePage";
 import ArticleDetails from "./pages/ArticleDetails";
 import FavouritesPage from "./pages/FavouritesPage";
+import EditArticlePage from "./pages/EditArticlePage";
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
         <Route element={<DefaultLayout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="search" element={<SearchPage />} />
-          <Route path="arcticle/new" element={<CreateArticlePage />} />
-          <Route path="arcticle/:id" element={<ArticleDetails />} />
+          <Route path="article/new" element={<CreateArticlePage />} />
+          <Route path="article/:id" element={<ArticleDetails />} />
+          <Route path="article/edit/:id/" element={<EditArticlePage />} />
           <Route path="favourites" element={<FavouritesPage />} />
           {/*  */}
           <Route path="departments" element={<Deparments />}>

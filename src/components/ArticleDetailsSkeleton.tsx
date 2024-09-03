@@ -4,9 +4,9 @@ import { IoCheckmarkCircle, IoPerson } from 'react-icons/io5';
 import { FaCalendarCheck } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
 
-const ArticleDetailsSkeleton = () => {
+const ArticleDetailsSkeleton = ({children}) => {
   return (
-    <div className="p-12 flex flex-col gap-10">
+    <div className="p-12 flex flex-col gap-10 relative">
       <div className="text-sm flex flex-col gap-3.5 text-slate-600 font-semibold">
         <div className="flex gap-1.5">
           {[{name:"Synergia"},{name:"e-Sekretariat"},{name:"abc"}].map((tag) => {
@@ -25,7 +25,7 @@ const ArticleDetailsSkeleton = () => {
           </div>
         </div>
       </div>
-
+{children&&<div className='absolute top-[50%] left-[45%]'>{children}</div>}
       <div className="grid grid-cols-[6fr_2fr] gap-10">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-1.5 break-words break-all">

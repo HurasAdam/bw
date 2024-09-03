@@ -104,7 +104,7 @@ const TableRow: React.FC<TableRowProps> = ({
       {showAction && (
         <td>
           <NavLink
-            to={`/arcticle/${data?._id}`}
+            to={`/article/${data?._id}`}
             className=" rounded text-white bg-blue-500 outline-none py-2 px-3"
           >
             Zobacz
