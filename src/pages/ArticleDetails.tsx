@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import { articlesApi } from "../services/articlesApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { FaCircleXmark } from "react-icons/fa6";
 import { FaCalendarCheck } from "react-icons/fa";
@@ -17,6 +17,7 @@ import ArticleDetailsSkeleton from "../components/ArticleDetailsSkeleton";
 
 const ArticleDetails: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data: article,isLoading,isFetching } = useQuery({
     queryFn: () => {
       return articlesApi.getArticle({ id });
@@ -27,6 +28,8 @@ const ArticleDetails: React.FC = () => {
     refetchOnWindowFocus: false,
   });
 
+
+  
   const { mutate } = useMutation({
     mutationFn: ({ id }: { id: string | undefined }) => {
       return articlesApi.incrementArticleViewsCounter({ id });
@@ -36,7 +39,7 @@ const ArticleDetails: React.FC = () => {
   const dropdownOptions = [
     {
       label: "Edytuj",
-      onClick: () => console.log("EDIT"),
+      onClick: () => navigate(`/article/edit/${id}`),
       icon: <MdModeEditOutline />,
     },
     {
@@ -61,16 +64,18 @@ const ArticleDetails: React.FC = () => {
         ]),
   ];
 
-if(isLoading){
+if(isFetching && !isLoading){
   return (
     <ArticleDetailsSkeleton/>
   )
 }
 
-if (isFetching && !isLoading) {
+if (isLoading) {
 
   return (
-    <div className="bg-orange-200">FETCHUJE</div>
+ <ArticleDetailsSkeleton>
+  <span className="loading loading-dots loading-lg"></span>
+ </ArticleDetailsSkeleton>
   )
 }
 

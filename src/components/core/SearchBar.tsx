@@ -12,10 +12,10 @@ const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch,c
   return (
     <Input
       type="text"
-      placeholder="Search"
+      placeholder="Wyszukaj"
       value={query}
       onChange={handleChange}
-      className={`${className} border rounded p-2 w-full`}
+      className={`${className} border rounded p-2 px-3 w-full`}
     />
   );
 };

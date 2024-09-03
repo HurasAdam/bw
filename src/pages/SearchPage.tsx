@@ -10,6 +10,7 @@ import { articlesApi } from "../services/articlesApi";
 import Pagination from "../components/core/Pagination";
 
 const SearchPage = () => {
+  
   const [page, setPage] = useState<number>(1);
 
   const searchParams = {
