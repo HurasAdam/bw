@@ -1,24 +1,33 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import TextBox from "../core/TextBox";
 import Button from "../core/Button";
 import * as types from "../../types/index";
 import Select from "react-select";
-import { IoCheckmarkCircle } from "react-icons/io5";
-import { MdOutlineNotInterested } from "react-icons/md";
 import { GiCheckMark } from "react-icons/gi";
 import { HiMiniXMark } from "react-icons/hi2";
 
 interface ILoginFormProps {
   onSave: (formData: types.ILoginFormData) => void;
   errorMessage?: string;
+  tags?:types.ITag;
+  article?:types.IArticle
 }
 
 const ArticleForm: React.FC<ILoginFormProps> = ({
+  article,
   onSave,
   errorMessage,
   tags,
+  
 }) => {
+
+  const defaultTags = useMemo(
+    () => article?.tags?.map(tag => ({ value: tag._id, label: tag.name })) || [],
+    [article]
+  );
+
+  
   const {
     watch,
     setValue,
@@ -27,23 +36,19 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
     handleSubmit,
   } = useForm({
     defaultValues: {
-      title: "",
-      employeeDescription: "",
-      clientDescription: "",
-      tags: [],
-      isVerified: false,
+      title:article ? article?.title : "",
+      employeeDescription: article? article?.employeeDescription : "",
+      clientDescription:  article? article?.clientDescription :"",
+      tags:defaultTags,
+      isVerified: article ? article?.isVerified : false,
     },
     mode: "onChange",
   });
 
   const handleChange = (selectedOptions): void => {
-    const selectedTags = selectedOptions.map((option) => ({
-      _id: option.value,
-      name: option.label,
-    }));
-
-    setValue("tags", selectedTags);
+    setValue("tags", selectedOptions); // Ustawienie wybranych tagów
   };
+
 
   const tagOptions = useMemo(
     () =>
@@ -54,12 +59,18 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
     [tags]
   );
   const xd = watch("isVerified");
-  console.log(xd);
+
 
   const isVerified = xd;
 
   const onSubmit = handleSubmit((data) => {
-    onSave(data);
+    const {tags}=data;
+    const formatedTags = tags.map((tag)=>{
+      return {_id:tag?.value, label:tag?.label}
+    })
+
+    const formatedData = {...data,tags:formatedTags}
+    onSave(formatedData);
   });
 
   return (
@@ -162,7 +173,7 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
             { label: "Nie zwerryfikowany", value: false },
           ].map((option) => {
             const isSelected = String(isVerified) === String(option.value);
-            console.log(isSelected);
+            
             return (
               <label
               htmlFor={option.label}
@@ -219,6 +230,7 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
             isSearchable={true}
             placeholder="Wybierz Tag"
             onChange={handleChange}
+            value={watch("tags")}
           />
         </div>
         {/*  */}

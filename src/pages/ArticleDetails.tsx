@@ -22,6 +22,7 @@ const ArticleDetails: React.FC = () => {
     queryFn: () => {
       return articlesApi.getArticle({ id });
     },
+     queryKey:["article"],
     onSuccess: () => {
       mutate({ id });
     },

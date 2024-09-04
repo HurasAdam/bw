@@ -72,10 +72,31 @@ const getFavouriteArticles = async () => {
   return data;
 };
 
+
+const updateArticle = async ({
+  title,
+  tags,
+  employeeDescription,
+  clientDescription,
+}) => {
+  const config = {
+    withCredentials: true,
+  };
+  const formData = { title, tags, employeeDescription, clientDescription };
+  console.log(formData);
+  const { data } = await axios.put(
+    `http://localhost:8000/api/articles/article/edit/66d89e0e80f8d77560033a8f`,
+    formData,
+    config
+  );
+  return data;
+};
+
 export const articlesApi = {
   createArticle,
   getAllArticles,
   getArticle,
   incrementArticleViewsCounter,
   getFavouriteArticles,
+  updateArticle
 };

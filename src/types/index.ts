@@ -12,3 +12,30 @@ export interface ILoginFormData{
     password: string;
 
 }
+
+
+export interface ITag {
+    _id: string;
+    name: string;
+  }
+  
+ export  interface IUser {
+    _id: string;
+    name: string;
+    surname: string;
+  }
+
+export interface IArticle {
+    _id: string;
+    title: string;
+    employeeDescription: string;
+    clientDescription: string;
+    createdBy: IUser;
+    tags: ITag[];
+    isVerified: boolean;
+    verifiedBy?: IUser;
+    viewsCounter: number;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  }
