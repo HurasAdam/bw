@@ -74,6 +74,7 @@ const getFavouriteArticles = async () => {
 
 
 const updateArticle = async ({
+  _id,
   title,
   tags,
   employeeDescription,
@@ -85,7 +86,7 @@ const updateArticle = async ({
   const formData = { title, tags, employeeDescription, clientDescription };
   console.log(formData);
   const { data } = await axios.put(
-    `http://localhost:8000/api/articles/article/edit/66d89e0e80f8d77560033a8f`,
+    `http://localhost:8000/api/articles/article/edit/${_id}`,
     formData,
     config
   );
