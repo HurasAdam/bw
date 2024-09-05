@@ -26,8 +26,9 @@ const EditArticlePage:React.FC = () => {
 
 
   const { mutate } = useMutation({
-    mutationFn: ({ title, tags, employeeDescription, clientDescription }) => {
+    mutationFn: ({ _id,title, tags, employeeDescription, clientDescription }) => {
       return articlesApi.updateArticle({
+        _id,
         title,
         tags,
         employeeDescription,
@@ -46,15 +47,6 @@ const EditArticlePage:React.FC = () => {
   const onSave = (formData) => {
     mutate(formData);
   };
-
-
-
-
-
-
-
-
-
 
   return (
     <div className="bg-white min-h-[calc(100vh-6rem)]  px-16 pt-10 pb-14 rounded-lg ">

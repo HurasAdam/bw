@@ -68,8 +68,13 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
     const formatedTags = tags.map((tag)=>{
       return {_id:tag?.value, label:tag?.label}
     })
+let formatedData;
+formatedData = {...data,tags:formatedTags}
+if(article){
+  formatedData = {...data,tags:formatedTags, _id:article?._id}
+}
 
-    const formatedData = {...data,tags:formatedTags}
+    
     onSave(formatedData);
   });
 
@@ -170,7 +175,7 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
         <div className="grid-row-5 gap-3 md:grid-cols-2 md:gap-3 lg:grid relative ">
           {[
             { label: "Zweryfikowany", value: true },
-            { label: "Nie zwerryfikowany", value: false },
+            { label: "Nie zweryfikowany", value: false },
           ].map((option) => {
             const isSelected = String(isVerified) === String(option.value);
             
@@ -183,7 +188,7 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
                   ? option.label === "Zweryfikowany"
                     ? "bg-green-700/70 text-white font-bold"
                     : "bg-rose-800/65 text-white font-bold"  // Zmieniono na właściwy warunek dla "Nie zweryfikowany"
-                  : "bg-slate-300 text-gray-700"           // Styl dla niezaznaczonych opcji
+                  : "text-white font-bold border bg-slate-300"          // Styl dla niezaznaczonych opcji
               }`}
             >
                 <input
