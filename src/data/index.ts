@@ -319,6 +319,16 @@ const articles = [
 const headers = ["Id", "First Name", "Last Name", "Internal Number", "Email"];
 const articleHeaders = ["Tytuł", "Tagi", "Zweryfikowany", "Data dodania"];
 
-const data = { users, headers, articles, articleHeaders };
+
+
+const selectUsersList = [
+  { label: "John Doe", value: "john_doe" },
+  { label: "Jane Smith", value: "jane_smith" },
+  { label: "Alice Johnson", value: "alice_johnson" },
+  { label: "Bob Brown", value: "bob_brown" },
+  { label: "Charlie White", value: "charlie_white" }
+];
+
+const data = { users, headers, articles, articleHeaders,selectUsersList };
 
 export default data;

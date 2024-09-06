@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Select from "react-select";
 import { Input } from '@headlessui/react'
-
+import data from '../../data';
 const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch,className }) => {
   const [query, setQuery] = useState('');
 
@@ -10,13 +11,17 @@ const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch,c
   };
 
   return (
-    <Input
+<div>
+<Input
       type="text"
       placeholder="Wyszukaj"
       value={query}
       onChange={handleChange}
       className={`${className} border rounded p-2 px-3 w-full`}
     />
+    <Select placeholder="Wybierz tag" className='py-0.5' isMulti={true} options={data.selectUsersList}/>
+</div>
+
   );
 };
 
