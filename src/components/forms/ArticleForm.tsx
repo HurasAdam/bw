@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import TextBox from "../core/TextBox";
 import Button from "../core/Button";
 import * as types from "../../types/index";
@@ -32,6 +32,9 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
     watch,
     setValue,
     register,
+    control,
+    setError,
+    clearErrors,
     formState: { errors },
     handleSubmit,
   } = useForm({
@@ -45,11 +48,6 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
     mode: "onChange",
   });
 
-  const handleChange = (selectedOptions): void => {
-    setValue("tags", selectedOptions); // Ustawienie wybranych tagów
-  };
-
-
   const tagOptions = useMemo(
     () =>
       tags?.map((tag) => ({
@@ -58,10 +56,10 @@ const ArticleForm: React.FC<ILoginFormProps> = ({
       })),
     [tags]
   );
-  const xd = watch("isVerified");
 
 
-  const isVerified = xd;
+
+
 
   const onSubmit = handleSubmit((data) => {
     const {tags}=data;
@@ -103,6 +101,32 @@ if(article){
             {errorMessage}
           </span>
         )}
+
+<div>
+          <label className="block mb-1.5" htmlFor="tags">
+            Wybierz Tag
+          </label>
+          <Controller
+            name="tags"
+            control={control}
+            rules={{ required: "Musisz wybrać przynajmniej jeden tag" }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                isMulti
+                options={tagOptions}
+                classNamePrefix="react-select"
+                placeholder="Wybierz Tag"
+                onChange={(selectedOptions) => field.onChange(selectedOptions)}
+              />
+            )}
+          />
+          {errors.tags && (
+            <span className="text-[11px] text-rose-500 font-semibold mt-0.5">
+              {errors.tags.message}
+            </span>
+          )}
+        </div>
 
         <div>
           <label className=" block mb-1.5 " htmlFor="employeeDescription">
@@ -166,13 +190,15 @@ if(article){
             </span>
           )}
         </div>
+
+
       </div>
 
       <div className="flex flex-col gap-5">
      
         {/*  */}
 
-        <div className="grid-row-5 gap-3 md:grid-cols-2 md:gap-3 lg:grid relative ">
+        {/* <div className="grid-row-5 gap-3 md:grid-cols-2 md:gap-3 lg:grid relative ">
           {[
             { label: "Zweryfikowany", value: true },
             { label: "Nie zweryfikowany", value: false },
@@ -222,22 +248,8 @@ if(article){
               {errors?.isVerified?.message}
             </span>
           )}
-        </div>
-        <div>
-          <label className=" block mb-1.5 " htmlFor="tags">
-            Wybierz Tag
-          </label>
-          <Select
-            id="tags"
-            closeMenuOnSelect={true}
-            options={tagOptions}
-            isMulti={true}
-            isSearchable={true}
-            placeholder="Wybierz Tag"
-            onChange={handleChange}
-            value={watch("tags")}
-          />
-        </div>
+        </div> */}
+
         {/*  */}
       </div>
 
