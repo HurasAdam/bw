@@ -87,8 +87,12 @@ console.log(debouncedValue);
 
 
   return (
-    <div className="flex flex-col gap-4 p-5 ">
-      <div className="sticky top-[61px] bg-white z-10 py-2">
+    <div className="flex flex-col gap-1 px-5 py-3 ">
+      <h2 className="text-2xl font-bold text-blue-900 px-0.5 pt-2 mb-3">Baza Arykułów</h2>
+      <div className="bg-sky-50 w-full px-2 py-2 text-sm rounded-md">
+        <span className="font-semibold text-slate-500">Znaleziono<span className="mx-2 text-blue-800 font-bold">{articles?.pagination?.total}</span>Artykułów</span>
+      </div>
+      <div className="sticky top-[61px] bg-white z-10 ">
         <SearchBar className="w-2/5 mx-auto "  refetch={refetch} tagsList={tagsList}/>
       </div>
 

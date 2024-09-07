@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArticleCard from "../components/ArticleCard";
 import data from "../data";
 import Table from "../components/core/Table";
@@ -21,7 +21,6 @@ const Dashboard = () => {
     },
     queryKey: ["latestArticles", searchParams],
   });
-
 
 
 
