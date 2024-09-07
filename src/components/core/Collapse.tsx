@@ -12,14 +12,14 @@ return(
     <div className="bg-base-200 collapse">
   <input type="checkbox" className="peer" onClick={toggleHandler}  checked={isChecked}/>
   <div
-    className="collapse-title bg-gray-100  text-blue-400 font-semibold peer-checked:text-blue-500">
+    className="collapse-title bg-blue-100 text-blue-400 font-semibold peer-checked:bg-blue-50 peer-checked:text-slate-700">
   <span className='flex items-center gap-3.5'>
   {isChecked ? <HiOutlineMinusCircle className='w-6 h-6'/> :<LuPlusCircle className='w-6 h-6'/>}
   {header}
   </span>
   </div>
   <div
-    className="collapse-content  peer-checked:border peer-checked:px-8 peer-checked:py-5  peer-checked:bg-white text-blue-400 ">
+    className="collapse-content  peer-checked:border peer-checked:px-8 peer-checked:py-5   peer-checked:bg-white text-slate-800  ">
     {children}
   </div>
 </div>

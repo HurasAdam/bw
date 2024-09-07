@@ -8,7 +8,7 @@ const useArticleFilters = ()=>{
 
     const title = searchParams.get("title") || "";
     const tags = searchParams.getAll("tags");
-    const page = searchParams.getAll("page");
+    const page = searchParams.get("page") ||1;
 
 
     const setFilters = useCallback((filters) => {
@@ -24,6 +24,10 @@ const useArticleFilters = ()=>{
                 });
             } 
 
+            if (filters.page !== undefined) {
+                params.set("page", filters.page.toString());
+              }
+
             return params;
         });
     }, []);
@@ -31,6 +35,7 @@ const useArticleFilters = ()=>{
 return {
     title,
     tags,
+    page,
     setFilters
 }
 

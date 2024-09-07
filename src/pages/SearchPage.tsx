@@ -15,12 +15,12 @@ import CONSTANTS from "../constants";
 
 const SearchPage = () => {
   
-const {title,tags,} = useArticleFilters();
+const {title,tags,setFilters,page} = useArticleFilters();
 
 const {debouncedValue} = useDebounce({value:title,delay:CONSTANTS.DEBOUNCE_DELAY_MS})
 
 console.log(debouncedValue);
-  const [page, setPage] = useState<number>(1);
+
   const queryParams={
     page,title:debouncedValue,tags
   }
@@ -72,7 +72,9 @@ console.log(debouncedValue);
     queryKey: ["articles", queryParams],
   });
 
-
+// useEffect(()=>{
+// setPage(1)
+// },[title,tags])
 
   const { data: tagsList,refetch } = useQuery({
     queryFn: () => {
@@ -83,6 +85,7 @@ console.log(debouncedValue);
   });
 
 
+
   return (
     <div className="flex flex-col gap-4 p-5 ">
       <div className="sticky top-[61px] bg-white z-10 py-2">
@@ -90,7 +93,10 @@ console.log(debouncedValue);
       </div>
 
       {isLoading ? (
-        <span>Loading...</span>
+    <div className=" min-h-[700px] flex justify-center items-center border flex-col bg-slate-50 rounded-md">
+         <span className="loading loading-dots loading-lg text-blue-600 scale-[1.5]"></span>
+         <span className="font-bold text-lg text-slate-400">Pobierane artykułow</span>
+    </div>
       ) : (
         <div className="flex flex-col gap-2">
           <Table
@@ -102,9 +108,9 @@ console.log(debouncedValue);
         </div>
       )}
  { articles?.pagination.pages >1  &&   <Pagination
-        page={articles?.pagination.page || 1}
+        currentPage={articles?.pagination.page || 1}
         pages={articles?.pagination.pages || 1}
-        onPageChange={(page) => setPage(page)}
+     
       />}
     </div>
   );
