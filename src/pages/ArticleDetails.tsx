@@ -109,7 +109,7 @@ if (isLoading) {
       <Collapse header=" Odpowiedź dla pracownika HD">
       <div className="flex flex-col gap-1.5 break-words break-all ">
 
-            <span className="whitespace-pre-wrap  block   min-h-[160px] text-slate-700/92">
+            <span className="whitespace-pre-wrap  block   min-h-[200px] text-slate-700/92">
               {article?.employeeDescription}
             </span>
           </div>
@@ -118,7 +118,7 @@ if (isLoading) {
   <Collapse header="Odpowiedz dla pracownika">
   <div className="flex flex-col gap-1.5 break-words break-all ">
         
-            <span className="whitespace-pre-wrap whitespace-normal  block  rounded-md min-h-[250px] text-slate-700/92">
+            <span className="whitespace-pre-wrap whitespace-normal  block  rounded-md min-h-[350px] text-slate-700/92">
               {article?.clientDescription}
             </span>
           </div>
