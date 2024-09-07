@@ -17,10 +17,12 @@ import CreateArticlePage from "./pages/CreateArticlePage";
 import ArticleDetails from "./pages/ArticleDetails";
 import FavouritesPage from "./pages/FavouritesPage";
 import EditArticlePage from "./pages/EditArticlePage";
+import ScrollToTop from "./components/core/ScrollToTop";
 
 function App() {
   return (
     <main className="w-full min-h-screen bg-main ">
+       <ScrollToTop /> 
       <Routes>
         <Route element={<DefaultLayout />}>
           <Route path="/" element={<Dashboard />} />
