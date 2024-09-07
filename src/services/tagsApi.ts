@@ -4,7 +4,7 @@ const getAllTags= async()=>{
     const config={
         withCredentials:true
     }
-    const {data}= await axios.get("http://localhost:8000/api/tags/"
+    const {data}= await axios.get("http://localhost:8000/api/tags"
     ,config);
     return data;
 };

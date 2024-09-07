@@ -26,6 +26,13 @@ const getAllArticles = async (searchParams) => {
 
   const queryParams = new URLSearchParams();
   queryParams.append("page", searchParams.page);
+  queryParams.append("title", searchParams.title );
+
+  if (searchParams.tags && searchParams.tags.length > 0) {
+    searchParams.tags.forEach((tag) => {
+      queryParams.append("tags", tag);
+    });
+  }
 
   const { data } = await axios.get(
     `http://localhost:8000/api/articles/?${queryParams}`,
@@ -93,11 +100,33 @@ const updateArticle = async ({
   return data;
 };
 
+const searchArticlesByFilter = async (searchParams) => {
+
+  const queryParams = new URLSearchParams();
+
+  queryParams.append("title",searchParams.title || "");
+
+
+
+  const config = {
+    withCredentials: true,
+  };
+
+  const { data } = await axios.get(
+    `http://localhost:8000/api/articles/search?${queryParams}`, 
+    config
+  );
+  return data;
+};
+
+
+
 export const articlesApi = {
   createArticle,
   getAllArticles,
   getArticle,
   incrementArticleViewsCounter,
   getFavouriteArticles,
-  updateArticle
+  updateArticle,
+  searchArticlesByFilter
 };
