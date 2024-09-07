@@ -1,7 +1,7 @@
 import React from "react";
 import ArticleForm from "../components/forms/ArticleForm";
 import { TbArticleFilled } from "react-icons/tb";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { tagsApi } from "../services/tagsApi";
 import { articlesApi } from "../services/articlesApi";
 import { useAppContext } from "../contexts/AppContext";
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const CreateArticlePage = () => {
   const { showToast, isLoggedIn } = useAppContext();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { data: tags } = useQuery({
@@ -29,6 +30,7 @@ const CreateArticlePage = () => {
     },
     onSuccess: () => {
       showToast({ message: "Dodano nowy artykuł", type: "SUCCESS" });
+      queryClient.invalidateQueries(["articles"])
       navigate("/search");
     },
   });
