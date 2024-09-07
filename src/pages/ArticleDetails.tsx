@@ -14,6 +14,7 @@ import { MdDelete } from "react-icons/md";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { TiArrowBack } from "react-icons/ti";
 import ArticleDetailsSkeleton from "../components/ArticleDetailsSkeleton";
+import Collapse from "../components/core/Collapse";
 
 const ArticleDetails: React.FC = () => {
   const { id } = useParams();
@@ -104,24 +105,24 @@ if (isLoading) {
       </div>
 
       <div className="grid grid-cols-[6fr_2fr] gap-10">
-        <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-1.5 break-words break-all">
-            <span className="text-blue-700/70 text-sm font-semibold">
-              Odpowiedź dla pracownika HD
-            </span>
-            <span className="whitespace-pre-wrap border block p-3 py-4  rounded-md  min-h-[160px] shadow-sm text-slate-700/92">
+        <div className="flex flex-col gap-8">
+      <Collapse header=" Odpowiedź dla pracownika HD">
+      <div className="flex flex-col gap-1.5 break-words break-all ">
+
+            <span className="whitespace-pre-wrap  block   min-h-[160px] text-slate-700/92">
               {article?.employeeDescription}
             </span>
           </div>
+      </Collapse>
 
-          <div className="flex flex-col gap-1.5 break-words break-all ">
-            <span className="text-blue-700/70 text-sm font-semibold ">
-              Odpowiedz dla klienta
-            </span>
-            <span className="whitespace-pre-wrap whitespace-normal border block p-4 py-5 rounded-md min-h-[250px] shadow-sm text-slate-700/92">
+  <Collapse header="Odpowiedz dla pracownika">
+  <div className="flex flex-col gap-1.5 break-words break-all ">
+        
+            <span className="whitespace-pre-wrap whitespace-normal  block  rounded-md min-h-[250px] text-slate-700/92">
               {article?.clientDescription}
             </span>
           </div>
+  </Collapse>
         </div>
         <div className=" p-5 h-fit min-h-[300px] sticky top-[74px]  flex flex-col gap-2 ">
           <div className="flex flex-col shadow-md pb-2 px-3 py-1 rounded-md">
