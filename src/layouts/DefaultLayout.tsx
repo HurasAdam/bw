@@ -46,7 +46,7 @@ const DefaultLayout = () => {
   if (user) {
     return (
       <div className="w-full h-screen flex flex-col md:flex-row">
-        <div className="w-[245px] h-screen bg-blue-950 sticky top-0 hidden md:block">
+        <div className="w-[225px] h-screen bg-blue-950 sticky top-0 hidden md:block">
           <Sidebar />
         </div>
 

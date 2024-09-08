@@ -41,7 +41,6 @@ const Table: React.FC<TableProps> = ({
           {data?.map((item) => (
             <TableRow
               showAction={showAction}
-              className=""
               key={item.id}
               data={item}
               showId={showId}

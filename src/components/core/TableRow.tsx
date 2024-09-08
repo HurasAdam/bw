@@ -47,7 +47,7 @@ const TableRow: React.FC<TableRowProps> = ({
 
   return (
     <tr className="  hover:bg-blue-200/10  border-b-blue-100 ">
-      {showId && <td className="py-2.5 ">{data._id}</td>}
+      {showId && <td className="py-2">{data._id}</td>}
 
       {Object.keys(data).map((key) => {
         if (key !== "_id") {
@@ -64,7 +64,7 @@ const TableRow: React.FC<TableRowProps> = ({
                   {(data[key] as string[]).map((tag) => (
                     <span
                       key={tag?._id}
-                      className="bg-tag-light text-white px-2.5 py-1.5 rounded-lg text-xs "
+                      className="bg-tag-light text-white px-[8.5px] py-[5px] rounded-lg text-xs "
                     >
                       {tag?.name}
                     </span>
@@ -105,7 +105,7 @@ const TableRow: React.FC<TableRowProps> = ({
         <td>
           <NavLink
             to={`/article/${data?._id}`}
-            className=" rounded text-white bg-blue-500 outline-none py-2 px-3"
+            className=" rounded text-white bg-blue-500 outline-none py-1.5 px-2.5"
           >
             Zobacz
           </NavLink>
