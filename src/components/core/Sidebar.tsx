@@ -11,6 +11,7 @@ import {
 import { Link, NavLink, useLocation } from "react-router-dom";
 // import { setOpenSidebar } from "../redux/authSlice";
 import { IoLogoFirebase } from "react-icons/io5";
+import { SiKnowledgebase } from "react-icons/si";
 import clsx from "clsx";
 import { useAppContext } from "../../contexts/AppContext";
 // import { useAccountStore } from "../redux/store";
@@ -89,9 +90,9 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-6 p-5">
-      <h1 className="flex gap-1 items-center">
+      <h1 className="flex gap-1.5 items-center">
         <p className="bg-blue-600 p-2 rounded-full">
-          <IoLogoFirebase className="text-white text-xl font-black" />
+          <SiKnowledgebase className="text-white text-xl font-black" />
         </p>
         <span className="text-2xl font-bold text-slate-300 ">Baza wiedzy</span>
       </h1>

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { authApi } from "../services/authApi";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Modal from "../components/core/Modal";
 
 const AppContext = React.createContext(undefined);
 
@@ -17,6 +18,13 @@ export const AppContextProvider = ({
 
   const [toast, setToast] = useState(undefined);
   const [user, setUser] = useState(null);
+  const [verifyModalState, setVerifyModalState] = useState({
+    isOpen:false,
+    triggerFn:()=>{},
+    header:"",
+    description:"",
+    type:""
+  })
 
   const { data, status, error,isLoading } = useQuery({
     queryKey: ["validateToken"], // Klucz zapytania
@@ -36,6 +44,34 @@ export const AppContextProvider = ({
   });
 
 
+
+
+
+  const showModal = ({header, description, triggerFn,type}) => {
+    setVerifyModalState({
+      isOpen: true,
+      header,
+      description,
+      triggerFn,
+      type
+    });
+  };
+
+
+  const closeModal = () => {
+    setVerifyModalState({
+      isOpen: false,
+      triggerFn: () => {},
+      header: "",
+      description: "",
+    });
+  };
+
+
+
+
+
+
   return (
     <AppContext.Provider
       value={{
@@ -46,7 +82,9 @@ export const AppContextProvider = ({
         isLoggedIn:status,
         user,
         isLoading,
-        setUser
+        setUser,
+        showModal,
+        closeModal,
       
       }}
     >
@@ -57,6 +95,19 @@ export const AppContextProvider = ({
           onClose={() => setToast(undefined)}
         />
       )}
+
+{verifyModalState?.isOpen && (
+        <Modal
+          header={verifyModalState.header}
+          description={verifyModalState.description}
+          verifyModalState={verifyModalState}
+          closeModal={closeModal}
+          type={verifyModalState.type}
+        />
+      )}
+
+
+
       {children}
     </AppContext.Provider>
   );

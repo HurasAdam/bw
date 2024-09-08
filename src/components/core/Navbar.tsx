@@ -10,7 +10,8 @@ import NotificationPanel from "./NotificationPanel";
 import UserAvatar from "./userAvatar";
 import Drawer from "./Drawer";
 import { NavLink } from "react-router-dom";
-import Modal from "./Modal";
+import Modal from "./SearchModal";
+import SearchModal from "./SearchModal";
 
 const Navbar: React.FC = ({ notifications }) => {
   const queryClient = useQueryClient();
@@ -43,8 +44,8 @@ const Navbar: React.FC = ({ notifications }) => {
 
         <div className="w-64 2xl:w-[350px] flex items-center py-2 px-3 gap-2 rounded-full bg-slate-100 ">
           <MdOutlineSearch />
-          <button className="w-full text-left px-1.5   text-gray-400 text-sm" onClick={() => setIsModalOpen(true)}>Szukaj</button>
-          <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+          <button className="w-full text-left px-1.5 hover:text-blue-200  text-gray-400 text-sm" onClick={() => setIsModalOpen(true)}>Szukaj</button>
+          <SearchModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
         </div>
       </div>
 
