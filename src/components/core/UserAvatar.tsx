@@ -22,7 +22,7 @@ const UserAvatar: React.FC = ({ logoutHandler }) => {
       <div>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="w-8 h-8 2xl:w-10 2xl:h-10 items-center justify-center rounded-full bg-blue-600">
+            <Menu.Button className="w-8 h-8 2xl:w-9 2xl:h-9 items-center justify-center rounded-full bg-blue-600">
               <span className="text-white font-semibold">
                 {getInitials(user?.name)}
               </span>
