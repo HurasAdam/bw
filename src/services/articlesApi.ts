@@ -120,6 +120,20 @@ const searchArticlesByFilter = async (searchParams) => {
 };
 
 
+const verifyArticle = async ({ id,isVerified }: { id: string,isVerified:boolean }) => {
+  const config = {
+    withCredentials: true,
+  };
+
+  const { data } = await axios.post(
+    `http://localhost:8000/api/articles/article/${id}/verify`,
+    {isVerified},
+    config
+  );
+  return data;
+};
+
+
 
 export const articlesApi = {
   createArticle,
@@ -128,5 +142,6 @@ export const articlesApi = {
   incrementArticleViewsCounter,
   getFavouriteArticles,
   updateArticle,
-  searchArticlesByFilter
+  searchArticlesByFilter,
+  verifyArticle
 };

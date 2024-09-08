@@ -41,9 +41,9 @@ const Toast: React.FC<IToastProps> = ({ message, type, onClose }) => {
   return (
     <div className={`${styles} ${visible ? "opacity-100" : "opacity-0"}`}>
       <div className="flex justify-between space-x-6 items-center pl-5 pr-3 py-4">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 max-w-[350px]">
           <FaCheckCircle className="w-4 h-4" />
-          <span className="text-md font-semibold">{message}</span>
+          <span className="text-md font-semibold break-all ">{message}</span>
         </div>
         <button onClick={onClose} className="rounded p-0.5 hover:bg-green-500">
           <IoClose className="w-5 h-5" />
