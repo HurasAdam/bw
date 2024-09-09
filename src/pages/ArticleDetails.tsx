@@ -13,7 +13,10 @@ import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { TiArrowBack } from "react-icons/ti";
+import { AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 import ArticleDetailsSkeleton from "../components/ArticleDetailsSkeleton";
+import { FaStar } from "react-icons/fa";
 import Collapse from "../components/core/Collapse";
 import Modal from "../components/core/Modal";
 import { useAppContext } from "../contexts/AppContext";
@@ -59,10 +62,30 @@ const {showModal,closeModal,showToast} = useAppContext();
   });
   
 
+  const {mutate:markArticleAsFavouriteMutation} = useMutation({
+    mutationFn: ({id}) => articlesApi.markArticleAsFavourite({ id }),
+    onSuccess: ({message}) => {
+      
+      closeModal();
+      queryClient.invalidateQueries(["article",id])
+      showToast({message,type:"SUCCESS"})
+      
+    },
+    onError: (error) => {
+      showToast({message:"Błąd weryfikacji artykułu:", type:"ERROR"});
+    console.log(error);
+    },
+  });
+
 
 
 
   const dropdownOptions = [
+    {
+      label: `${article?.isFavourite ? "Usuń z ulubionych":"Dodaj do ulubionych"}`,
+      onClick: () => markArticleAsFavouriteMutation({id}),
+      icon: article.isFavourite ? <AiFillStar/>: <AiOutlineStar /> ,
+    },
     {
       label: "Edytuj",
       onClick: () => navigate(`/article/edit/${id}`),

@@ -133,6 +133,18 @@ const verifyArticle = async ({ id,isVerified }: { id: string,isVerified:boolean 
   return data;
 };
 
+const markArticleAsFavourite = async ({ id }: { id: string }) => {
+  const config = {
+    withCredentials: true,
+  };
+
+  const { data } = await axios.post(
+    `http://localhost:8000/api/articles/article/${id}/add-favourite`,
+    {},
+    config
+  );
+  return data;
+};
 
 
 export const articlesApi = {
@@ -143,5 +155,6 @@ export const articlesApi = {
   getFavouriteArticles,
   updateArticle,
   searchArticlesByFilter,
-  verifyArticle
+  verifyArticle,
+  markArticleAsFavourite
 };
