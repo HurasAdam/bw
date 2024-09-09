@@ -27,7 +27,7 @@ const Dropdown = ({ options = [] }) => {
               :isVerifyOption 
               ?"hover:bg-green-100 transtion-all"
               :isUnverifyOption
-              ?"hover:bg-orange-100 transtion-all":""
+              ?"hover:bg-orange-100 transtion-all":"hover:bg-blue-100"
 
             return (
               <li
