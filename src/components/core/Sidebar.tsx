@@ -1,20 +1,18 @@
 import React from "react";
-import { FaTasks, FaTrashAlt, FaUsers } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
 import {
   MdDashboard,
-  MdOutlineAddTask,
   MdOutlinePendingActions,
   MdSettings,
   MdTaskAlt,
 } from "react-icons/md";
-import { Link, NavLink, useLocation } from "react-router-dom";
-// import { setOpenSidebar } from "../redux/authSlice";
-import { IoLogoFirebase } from "react-icons/io5";
+import { BsSearch } from "react-icons/bs";
+import { Link,  useLocation } from "react-router-dom";
+import { RiContactsBook3Fill } from "react-icons/ri";
 import { SiKnowledgebase } from "react-icons/si";
 import clsx from "clsx";
 import { useAppContext } from "../../contexts/AppContext";
-// import { useAccountStore } from "../redux/store";
+
 
 const sidebarLinks = [
   {
@@ -25,13 +23,13 @@ const sidebarLinks = [
   {
     label: "Wyszukaj",
     link: "search",
-    icon: <MdDashboard />,
+    icon: <BsSearch />,
   },
 
   {
     label: "Działy i kontakty",
     link: "departments",
-    icon: <FaTasks />,
+    icon: <RiContactsBook3Fill />,
   },
   {
     label: "Statystyki",

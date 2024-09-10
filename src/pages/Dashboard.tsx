@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import ArticleCard from "../components/ArticleCard";
+import React from "react";
+
 import data from "../data";
 import Table from "../components/core/Table";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +7,7 @@ import { articlesApi } from "../services/articlesApi";
 import Pagination from "../components/core/Pagination";
 import useArticleFilters from "../hooks/useArticleFilters";
 
-const Dashboard = () => {
+const Dashboard:React.FC = () => {
   // const [page, setPage] = useState<number>(1);
   const {title,tags,page} = useArticleFilters();
   const searchParams = {

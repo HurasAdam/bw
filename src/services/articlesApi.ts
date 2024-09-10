@@ -146,6 +146,18 @@ const markArticleAsFavourite = async ({ id }: { id: string }) => {
   return data;
 };
 
+const deleteArticle = async ({ id }: { id: string }) => {
+  const config = {
+    withCredentials: true,
+  };
+
+  const { data } = await axios.delete(
+    `http://localhost:8000/api/articles/article/${id}/delete`,
+    config
+  );
+  return data;
+};
+
 
 export const articlesApi = {
   createArticle,
@@ -156,5 +168,6 @@ export const articlesApi = {
   updateArticle,
   searchArticlesByFilter,
   verifyArticle,
-  markArticleAsFavourite
+  markArticleAsFavourite,
+  deleteArticle
 };
