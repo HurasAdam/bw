@@ -13,8 +13,8 @@ const Toast: React.FC<IToastProps> = ({ message, type, onClose }) => {
   const [visible, setVisible] = useState(true); // Sterowanie widocznością
 
   useEffect(() => {
-    const totalDuration = 5000; // Czas trwania to 5 sekund
-    const interval = 40; // Aktualizacja co 50ms
+    const totalDuration = 2900; // Czas trwania to 5 sekund
+    const interval = 10; // Aktualizacja co 20ms
     const decrement = (interval / totalDuration) * 100; // O ile zmniejszamy procent za każdym razem
 
     const progressInterval = setInterval(() => {

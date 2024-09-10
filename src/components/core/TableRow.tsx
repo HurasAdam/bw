@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
+import { MdTaskAlt } from "react-icons/md";
 import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
+import { IoIosHelpCircleOutline } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import { utils } from "../../utils";
 
@@ -55,9 +57,9 @@ const TableRow: React.FC<TableRowProps> = ({
             <td className="" key={key}>
               {key === "isVerified" ? (
                 data[key] ? (
-                  <IoMdCheckmarkCircle className="text-green-500 w-[15px] h-auto" />
+                  <MdTaskAlt className="text-green-500 w-[16px] h-auto" />
                 ) : (
-                  <IoMdCloseCircle className="text-red-500 w-[15px] h-auto" />
+                  <IoIosHelpCircleOutline className="text-secondary w-[16px] h-auto" />
                 )
               ) : key === "tags" ? (
                 <div className="flex flex-wrap gap-x-1 gap-y-2 max-w-[400px]">

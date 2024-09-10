@@ -14,7 +14,8 @@ const FavouritesPage: React.FC = () => {
   console.log(favourites);
 
   return (
-    <div>
+    <div className="px-[21px] py-3 ">
+      <h2 className="text-xl font-bold text-blue-900 px-0.5 pt-2 mb-5 ">Ulubione artykuły</h2>
       <Table
         headers={data.articleHeaders}
         data={favourites?.data}
