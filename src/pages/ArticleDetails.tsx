@@ -1,11 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React from "react";
 import { articlesApi } from "../services/articlesApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoCheckmarkCircle } from "react-icons/io5";
-import { FaCircleXmark } from "react-icons/fa6";
 import { FaCalendarCheck } from "react-icons/fa";
 import { utils } from "../utils";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { IoPerson } from "react-icons/io5";
 import { AiFillEye } from "react-icons/ai";
 import Dropdown from "../components/core/Dropdown";
@@ -16,7 +16,6 @@ import { TiArrowBack } from "react-icons/ti";
 import { AiOutlineStar } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 import ArticleDetailsSkeleton from "../components/ArticleDetailsSkeleton";
-import { FaStar } from "react-icons/fa";
 import Collapse from "../components/core/Collapse";
 import Modal from "../components/core/Modal";
 import { useAppContext } from "../contexts/AppContext";
@@ -72,11 +71,26 @@ const {showModal,closeModal,showToast} = useAppContext();
       
     },
     onError: (error) => {
-      showToast({message:"Błąd weryfikacji artykułu:", type:"ERROR"});
+      showToast({message:"Wystąpił błąd weryfikacji artykułu, spróbuj ponownie", type:"ERROR"});
     console.log(error);
     },
   });
 
+  const {mutate:deleteArticleMutation} = useMutation({
+    mutationFn: ({id}) => articlesApi.deleteArticle({ id }),
+    onSuccess: ({message}) => {
+      
+      closeModal();
+      // queryClient.invalidateQueries(["article",id])
+      navigate("/search");
+      showToast({message,type:"SUCCESS"})
+      
+    },
+    onError: (error) => {
+      showToast({message:"Coś poszło nie tak. Spróbuj ponownie:", type:"ERROR"});
+    console.log(error);
+    },
+  });
 
 
 
@@ -84,7 +98,7 @@ const {showModal,closeModal,showToast} = useAppContext();
     {
       label: `${article?.isFavourite ? "Usuń z ulubionych":"Dodaj do ulubionych"}`,
       onClick: () => markArticleAsFavouriteMutation({id}),
-      icon: article.isFavourite ? <AiFillStar/>: <AiOutlineStar /> ,
+      icon: article?.isFavourite ? <AiFillStar/>: <AiOutlineStar /> ,
     },
     {
       label: "Edytuj",
@@ -93,7 +107,14 @@ const {showModal,closeModal,showToast} = useAppContext();
     },
     {
       label: "Usuń",
-      onClick: () => console.log("DELETE"),
+      onClick: () => showModal({
+        isOpen:true, 
+        header:"Usuń artykuł ", 
+        description:"Czy jesteś pewien że chcesz usunąć ten artykuł ? Artykuł zostanie bezpowrtonie usunięty.", 
+        type:"DANGER",
+        triggerFn:()=>{
+          deleteArticleMutation({ id})
+      }}),
       icon: <MdDelete />,
     },
     ...(article?.isVerified
@@ -145,6 +166,7 @@ if(isFetching && !isLoading){
         <div className=" p-2.5 border bg-blue-50 rounded shadow-sm flex items-center justify-between">
           <span className="text-xl">{article?.title}</span>
           <div className="flex items-center gap-4  px-2">
+          {article?.isFavourite && <AiFillStar className="text-amber-500 w-[18px] h-[18px] "/>}
             <span>A {article?._id}</span>
             <Dropdown options={dropdownOptions} />
           </div>
@@ -184,7 +206,7 @@ if(isFetching && !isLoading){
               </span>
             ) : (
               <span className="font-semibold flex items-center gap-x-6">
-                <FaCircleXmark className="h-5 w-5 text-rose-700" />
+                <BsFillQuestionCircleFill className="h-5 w-5 text-secondary" />
                 Nie zweryfikowany
               </span>
             )}
@@ -258,6 +280,7 @@ if (isLoading) {
         <div className=" p-2.5 border bg-blue-50 rounded shadow-sm flex items-center justify-between">
           <span className="text-xl">{article?.title}</span>
           <div className="flex items-center gap-4  px-2">
+          {article?.isFavourite && <AiFillStar className="text-amber-500 w-[18px] h-[18px] "/>}
             <span>A {article?._id}</span>
             <Dropdown options={dropdownOptions} />
           </div>
@@ -297,7 +320,7 @@ if (isLoading) {
               </span>
             ) : (
               <span className="font-semibold flex items-center gap-x-6">
-                <FaCircleXmark className="h-5 w-5 text-rose-700" />
+                <BsFillQuestionCircleFill className="h-5 w-5 text-secondary" />
                 Nie zweryfikowany
               </span>
             )}
