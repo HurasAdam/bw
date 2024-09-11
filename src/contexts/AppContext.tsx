@@ -3,7 +3,7 @@ import Toast from "../components/core/Toast";
 import { useQuery } from "@tanstack/react-query";
 import { authApi } from "../services/authApi";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 import Modal from "../components/core/Modal";
 
 const AppContext = React.createContext(undefined);
@@ -95,7 +95,10 @@ export const AppContextProvider = ({
           onClose={() => setToast(undefined)}
         />
       )}
-
+<Toaster 
+  position="bottom-right"
+  reverseOrder={false}
+/>
 {verifyModalState?.isOpen && (
         <Modal
           header={verifyModalState.header}

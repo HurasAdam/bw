@@ -17,6 +17,7 @@ const CreateArticlePage = () => {
       return tagsApi.getAllTags();
     },
     queryKey: ["tags"],
+    refetchOnWindowFocus: false,
   });
 
   const { mutate } = useMutation({
