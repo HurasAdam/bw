@@ -14,11 +14,14 @@ import { MdDelete } from "react-icons/md";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { TiArrowBack } from "react-icons/ti";
 import { AiOutlineStar } from "react-icons/ai";
+import { RxCross2 } from "react-icons/rx";
 import { AiFillStar } from "react-icons/ai";
 import ArticleDetailsSkeleton from "../components/ArticleDetailsSkeleton";
 import Collapse from "../components/core/Collapse";
 import Modal from "../components/core/Modal";
 import { useAppContext } from "../contexts/AppContext";
+import toast from "react-hot-toast";
+import ToastVariant from "../components/core/ToastVariant";
 
 const ArticleDetails: React.FC = () => {
   const { id } = useParams();
@@ -35,6 +38,7 @@ const {showModal,closeModal,showToast} = useAppContext();
       mutate({ id });
     },
     refetchOnWindowFocus: false,
+   
   });
 
 
@@ -50,8 +54,39 @@ const {showModal,closeModal,showToast} = useAppContext();
     mutationFn: ({id,isVerified}) => articlesApi.verifyArticle({ id,isVerified }),
     onSuccess: ({message}) => {
       queryClient.invalidateQueries(["article",id])
+  
       closeModal();
-      showToast({message:message,type:"SUCCESS"})
+      toast.custom((t) => (
+        <div
+          className={`${
+            t.visible ? 'animate-enter' : 'animate-leave'
+          } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+        >
+          <div className="flex-1 w-0 p-4">
+            <div className="flex items-start">
+              <div className="flex-shrink-0 pt-0.5 flex ">
+            <IoCheckmarkCircle className="w-5 h-5 text-green-500"/>
+              </div>
+              <div className="ml-3 flex-1">
+                <p className="text-sm font-medium text-gray-900">
+                  Sukces
+                </p>
+                <p className="mt-1 text-sm text-gray-500">
+                  {message}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex border-l border-gray-200">
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+             <RxCross2 className="w-4 h-4"/>
+            </button>
+          </div>
+        </div>
+      ))
       
     },
     onError: (error) => {
@@ -66,12 +101,18 @@ const {showModal,closeModal,showToast} = useAppContext();
     onSuccess: ({message}) => {
       
       closeModal();
+      toast.custom((t) => (
+      <ToastVariant t={t} message={message} variant="SUCCESS"/>
+      ))
       queryClient.invalidateQueries(["article",id])
-      showToast({message,type:"SUCCESS"})
+      // showToast({message,type:"SUCCESS"})
       
     },
     onError: (error) => {
-      showToast({message:"Wystąpił błąd weryfikacji artykułu, spróbuj ponownie", type:"ERROR"});
+   
+      toast.custom((t) => (
+        <ToastVariant t={t} message={error.message} variant="ERROR"/>
+        ))
     console.log(error);
     },
   });
@@ -96,15 +137,16 @@ const {showModal,closeModal,showToast} = useAppContext();
 
   const dropdownOptions = [
     {
-      label: `${article?.isFavourite ? "Usuń z ulubionych":"Dodaj do ulubionych"}`,
-      onClick: () => markArticleAsFavouriteMutation({id}),
-      icon: article?.isFavourite ? <AiFillStar/>: <AiOutlineStar /> ,
-    },
-    {
       label: "Edytuj",
-      onClick: () => navigate(`/article/edit/${id}`),
+      onClick: () =>navigate(`/article/edit/${id}`),
       icon: <MdModeEditOutline />,
     },
+    {
+      label: `${article?.isFavourite ? "Usuń z ulubionych":"Dodaj do ulubionych"}`,
+      onClick: () =>markArticleAsFavouriteMutation({id}),
+      icon: article?.isFavourite ? <AiFillStar/>: <AiOutlineStar /> ,
+    },
+  
     {
       label: "Usuń",
       onClick: () => showModal({

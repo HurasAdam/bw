@@ -26,7 +26,7 @@ const {data:tags,refetch}=useQuery({
    return tagsApi.getAllTags();
   },
   queryKey:["tags"],
-
+  refetchOnWindowFocus: false,
 })
 
 

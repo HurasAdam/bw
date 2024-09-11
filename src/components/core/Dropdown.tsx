@@ -35,7 +35,7 @@ const Dropdown = ({ options = [] }) => {
                 className={`p-2 rounded ${hoverColorClass}`}
                 onClick={onClick}
               >
-                <button className="flex items-center gap-x-2" onClick={onClick}>
+                <button className="flex items-center gap-x-2" >
                   {icon}
                   {label}
                 </button>

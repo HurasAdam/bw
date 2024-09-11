@@ -82,6 +82,7 @@ console.log(debouncedValue);
     },
     queryKey: ["tags"],
     enabled:false,
+    refetchOnWindowFocus: false,
   });
 
 
