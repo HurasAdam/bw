@@ -52,7 +52,7 @@ const Navbar: React.FC = ({ notifications }) => {
       <div className="flex gap-3 items-center">
         <NavLink
           className="bg-blue-700 hover:bg-blue-600   transition-all hover:font-bold px-2.5  py-1 rounded-full  font-semibold  text-slate-100 "
-          to="/article/new"
+          to="articles/new-article"
         >
           +
         </NavLink>

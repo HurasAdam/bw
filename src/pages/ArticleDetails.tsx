@@ -22,6 +22,7 @@ import Modal from "../components/core/Modal";
 import { useAppContext } from "../contexts/AppContext";
 import toast from "react-hot-toast";
 import ToastVariant from "../components/core/ToastVariant";
+import Breadcrumbs from "../components/core/Breadcrumbs";
 
 const ArticleDetails: React.FC = () => {
   const { id } = useParams();
@@ -194,6 +195,7 @@ if(isFetching && !isLoading){
   return (
     <>
           <div className="p-12 flex flex-col gap-10">
+          <Breadcrumbs/>
       {/* <Modal  verifyModalState={verifyModalState} setVerifyModalState={setVerifyModalState}/> */}
       <div className="text-sm flex flex-col gap-3.5 text-slate-600 font-semibold">
         <div className="flex gap-1.5">
@@ -308,6 +310,7 @@ if (isLoading) {
   return (
 
     <div className="p-12 flex flex-col gap-10">
+     
       {/* <Modal  verifyModalState={verifyModalState} setVerifyModalState={setVerifyModalState}/> */}
       <div className="text-sm flex flex-col gap-3.5 text-slate-600 font-semibold">
         <div className="flex gap-1.5">

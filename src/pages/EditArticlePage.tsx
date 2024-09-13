@@ -6,6 +6,7 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { articlesApi } from '../services/articlesApi'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppContext } from '../contexts/AppContext';
+import { tagsApi } from '../services/tagsApi';
 
 const EditArticlePage:React.FC = () => {
   const { showToast, isLoggedIn } = useAppContext();
@@ -19,6 +20,15 @@ const EditArticlePage:React.FC = () => {
     onSuccess: () => {
    
     },
+    refetchOnWindowFocus: false,
+  });
+
+
+  const { data: tags } = useQuery({
+    queryFn: () => {
+      return tagsApi.getAllTags();
+    },
+    queryKey: ["tags"],
     refetchOnWindowFocus: false,
   });
 
@@ -53,7 +63,7 @@ const EditArticlePage:React.FC = () => {
       <h2 className="flex items-center gap-x-1.5 text-2xl font-semibold text-slate-500 jus">
         <FiEdit className="w-8 h-8 text-blue-700" /> Edytuj Artykuł 
       </h2>
-     {article&&<ArticleForm  article={article } onSave={onSave} />} 
+     {article&&<ArticleForm tags={tags} article={article } onSave={onSave} />} 
     </div>
   )
 }
