@@ -8,6 +8,9 @@ export default {
         "tag-light": "rgb(79, 143, 191)",
         secondary: "rgb(234, 107, 84)",
       },
+      fontFamily:{
+        'poppins': ['Poppins', 'sans-serif'], // Dodaj Poppins
+      }
     },
   },
   plugins: [require("daisyui"), require("tailwind-scrollbar")],

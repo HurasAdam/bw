@@ -18,6 +18,8 @@ import ArticleDetails from "./pages/ArticleDetails";
 import FavouritesPage from "./pages/FavouritesPage";
 import EditArticlePage from "./pages/EditArticlePage";
 import ScrollToTop from "./components/core/ScrollToTop";
+import StatisticsPage from "./pages/StatisticsPage";
+import TodosBoardPage from "./pages/TodosBoardPage";
 
 function App() {
   return (
@@ -26,11 +28,13 @@ function App() {
       <Routes>
         <Route element={<DefaultLayout />}>
           <Route path="/" element={<Dashboard />} />
-          <Route path="search" element={<SearchPage />} />
-          <Route path="article/new" element={<CreateArticlePage />} />
-          <Route path="article/:id" element={<ArticleDetails />} />
+          <Route path="articles" element={<SearchPage />} />
+          <Route path="articles/new-article" element={<CreateArticlePage />} />
+          <Route path="articles/:id" element={<ArticleDetails />} />
           <Route path="article/edit/:id/" element={<EditArticlePage />} />
           <Route path="favourites" element={<FavouritesPage />} />
+          <Route path="statistics" element={<StatisticsPage />} />
+          <Route path="todos-board" element={<TodosBoardPage />} />
           {/*  */}
           <Route path="departments" element={<Deparments />}>
             <Route index element={<Navigate to="helpdesk" replace />} />

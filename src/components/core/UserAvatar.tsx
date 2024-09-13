@@ -3,8 +3,9 @@ import { Menu, Transition } from "@headlessui/react";
 import { FaUser, FaUserLock } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
 
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { getInitials } from "../../utils/index";
+import { MdAdminPanelSettings } from "react-icons/md";
 import { useAccountStore } from "../redux/store";
 import { useQuery } from "@tanstack/react-query";
 import { userApi } from "../services/userApi";
@@ -47,10 +48,12 @@ const UserAvatar: React.FC = ({ logoutHandler }) => {
                       className="text-gray-700 group flex w-full items-center rounded-md px-2 py-2 text-base"
                     >
                       <FaUser className="mr-2" aria-hidden="true" />
-                      Profile
+                      Profil
                     </button>
                   )}
                 </Menu.Item>
+
+   
 
                 <Menu.Item>
                   {({ active }) => (
@@ -61,6 +64,19 @@ const UserAvatar: React.FC = ({ logoutHandler }) => {
                       <FaUserLock className="mr-2" aria-hidden="true" />
                       Change Password
                     </button>
+                  )}
+                </Menu.Item>
+
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                    link="/admin"
+                      onClick={() => setOpenPassword(true)}
+                      className={`tetx-gray-700 group flex w-full items-center rounded-md px-2 py-2 text-base`}
+                    >
+                      <MdAdminPanelSettings className="mr-2" aria-hidden="true" />
+                      Panel Admina
+                    </Link>
                   )}
                 </Menu.Item>
 

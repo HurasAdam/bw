@@ -22,7 +22,7 @@ const sidebarLinks = [
   },
   {
     label: "Wyszukaj",
-    link: "search",
+    link: "articles",
     icon: <BsSearch />,
   },
 
@@ -33,7 +33,7 @@ const sidebarLinks = [
   },
   {
     label: "Statystyki",
-    link: "completed/completed",
+    link: "statistics",
     icon: <MdTaskAlt />,
   },
   {
@@ -43,7 +43,7 @@ const sidebarLinks = [
   },
   {
     label: "Moj planer",
-    link: "in-progress/in progress",
+    link: "todos-board",
     icon: <MdOutlinePendingActions />,
   },
 ];

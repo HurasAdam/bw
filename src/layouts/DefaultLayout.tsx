@@ -3,6 +3,7 @@ import { useAppContext } from "../contexts/AppContext";
 import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../components/core/Sidebar";
 import Navbar from "../components/core/Navbar";
+import Breadcrumbs from "../components/core/Breadcrumbs";
 
 const data = [
   {
@@ -52,9 +53,10 @@ const DefaultLayout = () => {
 
         {/* <MobileSidebar />  */}
 
-        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-white ">
+        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-white  ">
           <div className="px-5  bg-white rounded-tl-2xl rounded-bl-2xl min-h-full h-fit">
             <Navbar notifications={data} />
+          <div className=" px-9 mt-4   ">  <Breadcrumbs/></div>
             <Outlet />
           </div>
         </div>
