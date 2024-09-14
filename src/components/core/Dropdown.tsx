@@ -1,36 +1,35 @@
 import React from "react";
 import { IoMdMore } from "react-icons/io";
-const Dropdown = ({ options = [] }) => {
+
+const Dropdown = ({ options = [], ICON,IconSize }) => {
+  const IconComponent = ICON; // Dynamicznie przypisuje ikonę jako komponent
+
   return (
     <div className="dropdown dropdown-end ">
-      <IoMdMore
+      <div
         tabIndex={0}
-        className="hover:text-secondary transition-all  outline-none cursor-pointer w-[21px] h-6"
-      ></IoMdMore>
+        className=" transition-all  outline-none cursor-pointer  w-fit h-fit"
+      >
+          {ICON}
+    </div>
       {options.length > 0 && (
         <ul
           tabIndex={0}
-          className="dropdown-content cursor-pointer bg-base-100 rounded-box z-[1] w-52  shadow font-semibold "
+          className="dropdown-content cursor-pointer  bg-base-100 rounded-box z-[1] w-52  shadow font-semibold mt-[10px] "
         >
           {options.map(({ label, onClick, icon }) => {
-            // Sprawdzenie dla opcji
-            const isEditOption = label === "Edytuj";
             const isDeleteOption = label === "Usuń";
-            const isVerifyOption = label === "Zweryfikuj";
-            const isUnverifyOption = label === "Cofnij weryfikację";
-
-            // Ustawienie klasy na podstawie opcji
             const hoverColorClass = isDeleteOption
               ? "hover:bg-rose-500/50 transition-all"
-              :"hover:bg-blue-100"
+              : "hover:bg-blue-100 transition-shadow";
 
             return (
               <li
-                key={label} // dodaj unikalny klucz dla każdego elementu listy
+                key={label}
                 className={`py-2.5 px-3 rounded ${hoverColorClass}`}
                 onClick={onClick}
               >
-                <button className="flex items-center gap-x-2" >
+                <button className="flex items-center gap-x-2">
                   {icon}
                   {label}
                 </button>
