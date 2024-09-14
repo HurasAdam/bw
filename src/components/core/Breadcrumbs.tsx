@@ -10,6 +10,7 @@ const breadcrumbNameMap = {
   sales: 'Dział sprzedaży',
   administration: 'Dział administracji',
   appointment: 'Dział umawiana spotkań',
+  edit: 'Edytuj',
   'new-article': 'Nowy artykuł',
   'add-document': 'Dodaj dokument',
 };

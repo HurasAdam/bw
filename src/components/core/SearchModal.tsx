@@ -42,7 +42,7 @@ const searchHandler = () => {
 
   // Generuj pełny query string i przekieruj
   setFilters({title:""})
-  navigate(`/search?${queryParams.toString()}`);
+  navigate(`/articles?${queryParams.toString()}`);
   setIsModalOpen(false);
 };
 

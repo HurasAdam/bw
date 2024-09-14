@@ -124,8 +124,10 @@ const {showModal,closeModal,showToast} = useAppContext();
       
       closeModal();
       // queryClient.invalidateQueries(["article",id])
-      navigate("/search");
-      showToast({message,type:"SUCCESS"})
+      navigate("/articles");
+      toast.custom((t) => (
+        <ToastVariant t={t} message={message} variant="SUCCESS"/>
+        ))
       
     },
     onError: (error) => {
@@ -136,10 +138,11 @@ const {showModal,closeModal,showToast} = useAppContext();
 
 
 
+
   const dropdownOptions = [
     {
       label: "Edytuj",
-      onClick: () =>navigate(`/article/edit/${id}`),
+      onClick: () =>navigate(`/articles/${id}/edit`),
       icon: <MdModeEditOutline />,
     },
     {
@@ -148,18 +151,7 @@ const {showModal,closeModal,showToast} = useAppContext();
       icon: article?.isFavourite ? <AiFillStar/>: <AiOutlineStar /> ,
     },
   
-    {
-      label: "Usuń",
-      onClick: () => showModal({
-        isOpen:true, 
-        header:"Usuń artykuł ", 
-        description:"Czy jesteś pewien że chcesz usunąć ten artykuł ? Artykuł zostanie bezpowrtonie usunięty.", 
-        type:"DANGER",
-        triggerFn:()=>{
-          deleteArticleMutation({ id})
-      }}),
-      icon: <MdDelete />,
-    },
+  
     ...(article?.isVerified
       ? [
           {
@@ -189,13 +181,26 @@ const {showModal,closeModal,showToast} = useAppContext();
             icon: <IoMdCheckmarkCircleOutline />,
           },
         ]),
+        {
+          label: "Usuń",
+          onClick: () => showModal({
+            isOpen:true, 
+            header:"Usuń artykuł ", 
+            description:"Czy jesteś pewien że chcesz usunąć ten artykuł ? Artykuł zostanie bezpowrtonie usunięty.", 
+            type:"DANGER",
+            triggerFn:()=>{
+              deleteArticleMutation({ id})
+          }}),
+          icon: <MdDelete />,
+        },
+        
   ];
 
 if(isFetching && !isLoading){
   return (
     <>
           <div className="p-12 flex flex-col gap-10">
-          <Breadcrumbs/>
+        
       {/* <Modal  verifyModalState={verifyModalState} setVerifyModalState={setVerifyModalState}/> */}
       <div className="text-sm flex flex-col gap-3.5 text-slate-600 font-semibold">
         <div className="flex gap-1.5">

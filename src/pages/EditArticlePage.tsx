@@ -47,7 +47,7 @@ const EditArticlePage:React.FC = () => {
     },
     onSuccess: () => {
       showToast({ message: "Artukuł został zaktualizowany", type: "SUCCESS" });
-      navigate("/search");
+      navigate("/articles");
     },
   });
 

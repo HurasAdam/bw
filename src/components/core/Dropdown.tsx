@@ -10,7 +10,7 @@ const Dropdown = ({ options = [] }) => {
       {options.length > 0 && (
         <ul
           tabIndex={0}
-          className="dropdown-content cursor-pointer bg-base-100 rounded-box z-[1] w-52 p-2 shadow font-semibold "
+          className="dropdown-content cursor-pointer bg-base-100 rounded-box z-[1] w-52  shadow font-semibold "
         >
           {options.map(({ label, onClick, icon }) => {
             // Sprawdzenie dla opcji
@@ -20,19 +20,14 @@ const Dropdown = ({ options = [] }) => {
             const isUnverifyOption = label === "Cofnij weryfikację";
 
             // Ustawienie klasy na podstawie opcji
-            const hoverColorClass = isEditOption
-              ? "hover:bg-blue-100 transition-all"
-              : isDeleteOption
-              ? "hover:bg-rose-100 transition-all"
-              :isVerifyOption 
-              ?"hover:bg-green-100 transtion-all"
-              :isUnverifyOption
-              ?"hover:bg-orange-100 transtion-all":"hover:bg-blue-100"
+            const hoverColorClass = isDeleteOption
+              ? "hover:bg-rose-500/50 transition-all"
+              :"hover:bg-blue-100"
 
             return (
               <li
                 key={label} // dodaj unikalny klucz dla każdego elementu listy
-                className={`p-2 rounded ${hoverColorClass}`}
+                className={`py-2.5 px-3 rounded ${hoverColorClass}`}
                 onClick={onClick}
               >
                 <button className="flex items-center gap-x-2" >

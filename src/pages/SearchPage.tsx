@@ -5,6 +5,7 @@ import data from "../data";
 import SearchBar from "../components/core/SearchBar";
 import { Button } from "@headlessui/react";
 import { NavLink, useSearchParams } from "react-router-dom";
+import { SiPowerpages } from "react-icons/si";
 import { useQuery } from "@tanstack/react-query";
 import { articlesApi } from "../services/articlesApi";
 import Pagination from "../components/core/Pagination";
@@ -24,46 +25,7 @@ console.log(debouncedValue);
   const queryParams={
     page,title:debouncedValue,tags
   }
-  // const [title, setTitle] = useState('');
-  // const [debouncedTitle, setDebouncedTitle] = useState('');
 
-
-// const queryParams = {
-//   title,
-// tags
-// }
-
-// const handleTitleChange = (e) =>{
-//   setSearchParams((prev)=>{
-//     prev.set("title",e.target.value)
-//   })
-// }
-
-// const handleTagChange = (selected) =>{
-//   setSearchParams((prev)=>{
-// prev.set("tags",selected)
-//   })
-// }
-
-
-// useEffect(()=>{
-
-// const handler = setTimeout(()=>{
-//   setDebouncedTitle(title)
-// },350)
-
-// return ()=>{
-//   clearTimeout(handler)
-// }
-
-
-// },[title])
-
-  // const searchParams = {
-  //   page: page.toString(),
-  //   title:debouncedTitle,
-  //   tags
-  // };
 
   const { data: articles, isLoading } = useQuery({
     queryFn: () => {
@@ -72,9 +34,7 @@ console.log(debouncedValue);
     queryKey: ["articles", queryParams],
   });
 
-// useEffect(()=>{
-// setPage(1)
-// },[title,tags])
+
 
   const { data: tagsList,refetch } = useQuery({
     queryFn: () => {
@@ -89,7 +49,7 @@ console.log(debouncedValue);
 
   return (
     <div className="flex flex-col gap-1 px-[21px] py-3 ">
-      <h2 className="text-2xl font-bold text-blue-900 px-0.5 pt-2 mb-3">Baza Arykułów</h2>
+      <h2 className="text-xl font-bold text-gray-600 px-0.5 pt-2 mb-3 flex items-center gap-2"><SiPowerpages className="text-blue-900"/>Baza Arykułów</h2>
       <div className="bg-sky-50 w-full px-2 py-2 text-sm rounded-md">
         <span className="font-semibold text-slate-500">Znaleziono<span className="mx-2 text-blue-800 font-bold">{articles?.pagination?.total}</span>Artykułów</span>
       </div>
