@@ -4,6 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../components/core/Sidebar";
 import Navbar from "../components/core/Navbar";
 import Breadcrumbs from "../components/core/Breadcrumbs";
+import ResponsiveSidebar from "../components/core/ResponsiveSidebar";
 
 const data = [
   {
@@ -47,10 +48,12 @@ const DefaultLayout = () => {
   if (user) {
     return (
       <div className="w-full h-screen flex flex-col md:flex-row">
-        <div className="w-[225px] h-screen bg-blue-950 sticky top-0 hidden md:block">
+        <div className="w-[225px] h-screen bg-blue-950 sticky top-0 hidden xl:block">
           <Sidebar />
         </div>
-
+        <div className="w-[80px] h-screen bg-blue-950 sticky top-0 hidden md:block xl:hidden">
+         <ResponsiveSidebar/>
+        </div>
         {/* <MobileSidebar />  */}
 
         <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-white  ">

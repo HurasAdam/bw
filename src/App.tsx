@@ -20,6 +20,8 @@ import EditArticlePage from "./pages/EditArticlePage";
 import ScrollToTop from "./components/core/ScrollToTop";
 import StatisticsPage from "./pages/StatisticsPage";
 import TodosBoardPage from "./pages/TodosBoardPage";
+import AdminLayout from "./layouts/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function App() {
   return (
@@ -44,6 +46,10 @@ function App() {
             <Route path="appointment" element={<AppointmentPage />} />
           </Route>
           {/*  */}
+        </Route>
+
+        <Route element={<AdminLayout />}>
+      <Route path="/admin" element={<AdminDashboard/>}/>
         </Route>
 
         <Route element={<GuestLayout />}>

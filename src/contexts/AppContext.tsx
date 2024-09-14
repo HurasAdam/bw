@@ -5,6 +5,7 @@ import { authApi } from "../services/authApi";
 import React from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import Modal from "../components/core/Modal";
+import ContentModal from "../components/core/ContentModal";
 
 const AppContext = React.createContext(undefined);
 
@@ -23,7 +24,13 @@ export const AppContextProvider = ({
     triggerFn:()=>{},
     header:"",
     description:"",
-    type:""
+    type:"",
+   
+  })
+  const [contentModalState, setContentModalState] = useState({
+    isOpen:false,
+    triggerFn:()=>{},
+    childrenComponent:""
   })
 
   const { data, status, error,isLoading } = useQuery({
@@ -53,9 +60,18 @@ export const AppContextProvider = ({
       header,
       description,
       triggerFn,
-      type
+      type,
+     
     });
   };
+
+  const showContentModal = ({triggerFn,childrenComponent}) =>{
+setContentModalState({
+  isOpen:true,
+  triggerFn,
+  childrenComponent
+})
+  }
 
 
   const closeModal = () => {
@@ -64,11 +80,18 @@ export const AppContextProvider = ({
       triggerFn: () => {},
       header: "",
       description: "",
+      
     });
   };
 
 
-
+  const closeContentModal = () =>{
+    setContentModalState({
+      isOpen:false,
+      childrenComponent:""
+      
+    })
+  }
 
 
 
@@ -85,6 +108,8 @@ export const AppContextProvider = ({
         setUser,
         showModal,
         closeModal,
+        showContentModal,
+        closeContentModal
       
       }}
     >
@@ -106,8 +131,15 @@ export const AppContextProvider = ({
           verifyModalState={verifyModalState}
           closeModal={closeModal}
           type={verifyModalState.type}
+       
         />
       )}
+
+<ContentModal
+contentModalState={contentModalState}
+children={contentModalState.childrenComponent}
+closeModal={closeContentModal}
+/>
 
 
 

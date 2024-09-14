@@ -49,7 +49,7 @@ const TableRow: React.FC<TableRowProps> = ({
 
   return (
     <tr className="  hover:bg-blue-200/10  border-b-blue-100 ">
-      {showId && <td className="py-2">{data._id}</td>}
+      {showId && <td className="py-2 hidden lg:flex">{data._id}</td>}
 
       {Object.keys(data).map((key) => {
         if (key !== "_id") {
@@ -62,7 +62,7 @@ const TableRow: React.FC<TableRowProps> = ({
                   <IoIosHelpCircleOutline className="text-secondary w-[16px] h-auto" />
                 )
               ) : key === "tags" ? (
-                <div className="flex flex-wrap gap-x-1 gap-y-2 max-w-[400px]">
+                <div className=" hidden lg:flex flex-wrap gap-x-1 gap-y-2 lg:max-w-[400px] ">
                   {(data[key] as string[]).map((tag) => (
                     <span
                       key={tag?._id}
@@ -73,10 +73,10 @@ const TableRow: React.FC<TableRowProps> = ({
                   ))}
                 </div>
               ) : key === "updatedAt" ? (
-                <span className="font-semibold text-slate-500 text-xs">
+                <div className="hidden lg:flex flex-wrap gap-x-1 gap-y-2 lg:max-w-[400px]  ">
                   {" "}
                   {utils.dateFormatter(data[key])}
-                </span>
+                </div>
               ) : (
                 <span className="font-semibold text-gray-600 text-[13px]">
                   {data[key]}

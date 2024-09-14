@@ -5,14 +5,38 @@ interface TableHeaderProps {
   showId: boolean;
 }
 
-const TableHeader: React.FC<TableHeaderProps> = ({ headers }) => (
-  <thead className="bg-blue-50  border-indigo-100 min-w-full ">
-    <tr className="w-full">
-      {headers.map((header, index) => (
-        <th key={index}>{header}</th>
-      ))}
-    </tr>
-  </thead>
-);
+const TableHeader: React.FC<TableHeaderProps> = ({ headers }) => {
+
+  const tagClassNameHandler = (header: string) => {
+
+    if (header === "ID") {
+      return "hidden lg:flex ";
+    }
+
+    if (header === "Tagi") {
+      return "hidden lg:flex ";
+    }
+    
+
+    if(header ==="Data dodania"){
+      return "hidden lg:flex"
+    }
+  };
+
+
+ return (
+    <thead className="bg-blue-50  border-indigo-100 min-w-full ">
+      <tr className="w-full">
+        {headers.map((header, index) => {
+          console.log(header)
+           return(
+        
+            <th className={tagClassNameHandler(header)}  key={index}>{header}</th>
+          )
+        })}
+      </tr>
+    </thead>
+  );
+}
 
 export default TableHeader;

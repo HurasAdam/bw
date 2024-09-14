@@ -6,7 +6,7 @@ import { MdManageAccounts } from "react-icons/md";
 import { MdWarning } from 'react-icons/md';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
-const Modal =({verifyModalState, closeModal,type})=> {
+const ContentModal =({children,contentModalState, closeModal,type})=> {
 
 
   const typeVariantHandler = () =>{
@@ -27,21 +27,23 @@ const Modal =({verifyModalState, closeModal,type})=> {
   return (
     <>
       
-      <Dialog open={verifyModalState.isOpen} onClose={closeModal} className="relative z-50 ">
+      <Dialog open={contentModalState.isOpen} onClose={closeModal} className="relative z-50 ">
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-zinc-900/60 ">
-          <DialogPanel className="min-w-[400px] rounded-md space-y-10 border bg-white py-12 px-10" >
-           {verifyModalState.header && <DialogTitle className="font-bold text-2xl text-slate-600 flex items-center gap-2">{typeVariantHandler()}{verifyModalState?.header} </DialogTitle>}
-            <Description className={`text-md text-slate-600 break-all   "max-w-[450px]" }`}>
-
-{verifyModalState?.description}
-
-
+          <DialogPanel className="min-w-[400px] rounded-md space-y-10 border bg-white py-1 px-10" >
+           {contentModalState.header && <DialogTitle className="font-bold text-2xl text-slate-600 flex items-center gap-2">{typeVariantHandler()}{contentModalState?.header} </DialogTitle>}
+            <Description className={`text-md text-slate-600 break-all   ${children ? "w-fit": "max-w-[450px]" }`}>
+{contentModalState?.description&&<div>
+{contentModalState?.description}
+</div>}
+{children &&<div>
+{children}
+</div>}
             </Description>
  
-      <div className="flex gap-8 justify-end px-3">
+         { !children &&  <div className="flex gap-8 justify-end px-3">
               <button className='text-slate-500' onClick={closeModal}>Anuluj</button>
-              <button className='border px-4 py-1.5 rounded hover:bg-blue-300 transition-all delay-50 shadow-sm bg-blue-400/85 text-white font-semibold' onClick={()=>verifyModalState.triggerFn()} >Potwierdź</button>
-            </div>
+              <button className='border px-4 py-1.5 rounded hover:bg-blue-300 transition-all delay-50 shadow-sm bg-blue-400/85 text-white font-semibold' onClick={()=>contentModalState.triggerFn()} >Potwierdź</button>
+            </div>}
           </DialogPanel>
         </div>
       </Dialog>
@@ -49,4 +51,4 @@ const Modal =({verifyModalState, closeModal,type})=> {
   )
 }
 
-export default Modal;
+export default ContentModal;
