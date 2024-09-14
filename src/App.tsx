@@ -22,6 +22,7 @@ import StatisticsPage from "./pages/StatisticsPage";
 import TodosBoardPage from "./pages/TodosBoardPage";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminTagsPage from "./pages/admin/AdminTagsPage";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
 
         <Route element={<AdminLayout />}>
       <Route path="/admin" element={<AdminDashboard/>}/>
+      <Route path="admin/tags" element={<AdminTagsPage/>}/>
         </Route>
 
         <Route element={<GuestLayout />}>

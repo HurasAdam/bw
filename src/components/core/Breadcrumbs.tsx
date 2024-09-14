@@ -11,6 +11,7 @@ const breadcrumbNameMap = {
   administration: 'Dział administracji',
   appointment: 'Dział umawiana spotkań',
   edit: 'Edytuj',
+  tags: 'Lista tagów',
   'new-article': 'Nowy artykuł',
   'add-document': 'Dodaj dokument',
 };

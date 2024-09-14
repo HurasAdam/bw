@@ -19,14 +19,14 @@ import { useAppContext } from "../../contexts/AppContext";
 const sidebarLinks = [
   {
     label: "Panel Admina",
-    link: "/",
+    link: "/admin",
     icon: <MdDashboard />,
   },
 
 
   {
     label: "Tagi",
-    link: "departments",
+    link: "/admin/tags",
     icon: <HiMiniHashtag />,
   },
   {
@@ -47,7 +47,7 @@ const ASidebar: React.FC = () => {
   // const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-
+console.log(path)
   const sidebarRoleBasedLinks = user?.isAdmin
     ? sidebarLinks
     : sidebarLinks.slice(0, 6);
@@ -65,12 +65,16 @@ const ASidebar: React.FC = () => {
   }
   const NavLink: React.FC<INavLinkProps> = ({ element }) => {
     const { link, icon, label } = element;
+    
+    // Check if the full path matches exactly
+    const isActive = location.pathname === link;
+  
     return (
       <Link
         onClick={closeSidebar}
         className={clsx(
           "w-full lg:w-[95%] flex gap-2 px-3 py-2 rounded-full items-center text-indigo-200 text-base hover:bg-[#2564ed2d]",
-          path === link.split("/")[0] ? "bg-blue-600 text-neutral-50" : ""
+          isActive ? "bg-blue-600 text-neutral-50" : ""
         )}
         to={link}
       >
