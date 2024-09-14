@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { BiSolidContact } from "react-icons/bi";
 
 const tabs = [
   { label: "Pomoc techniczna", link: "helpdesk" },
@@ -14,8 +15,8 @@ const Deparments: React.FC = () => {
 
   return (
     <div className="min-h-[calc(100vh-6rem)] bg-white p-5  rounded-xs">
-      <h2 className="text-2xl mb-11 font-bold text-gray-600">
-        Działy i kontakty
+      <h2 className="text-xl mb-11 font-bold text-gray-600 flex items-center gap-2">
+        <BiSolidContact className="text-blue-800"/>Działy i kontakty
       </h2>
 
       <ul className="hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
