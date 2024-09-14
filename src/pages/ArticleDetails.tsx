@@ -18,6 +18,7 @@ import { TiArrowBack } from "react-icons/ti";
 import { AiOutlineStar } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import { AiFillStar } from "react-icons/ai";
+import { MdHistory } from 'react-icons/md';
 import ArticleDetailsSkeleton from "../components/ArticleDetailsSkeleton";
 import Collapse from "../components/core/Collapse";
 import Modal from "../components/core/Modal";
@@ -30,7 +31,7 @@ const ArticleDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-const {showModal,closeModal,showToast} = useAppContext();
+const {showModal,closeModal,showToast,showContentModal} = useAppContext();
 
   const { data: article,isLoading,isFetching } = useQuery({
     queryFn: () => {
@@ -184,6 +185,18 @@ const {showModal,closeModal,showToast} = useAppContext();
           },
         ]),
         {
+          label: "Historia zmian",
+          onClick: () => showContentModal({
+            isOpen:true, 
+           childrenComponent:(<div>XDD</div>),
+         
+     
+            triggerFn:()=>{
+              deleteArticleMutation({ id})
+          }}),
+          icon: <MdHistory />,
+        },
+        {
           label: "Usuń",
           onClick: () => showModal({
             isOpen:true, 
@@ -195,6 +208,7 @@ const {showModal,closeModal,showToast} = useAppContext();
           }}),
           icon: <MdDelete />,
         },
+
         
   ];
 
