@@ -32,7 +32,7 @@ const CreateArticlePage = () => {
     onSuccess: () => {
       showToast({ message: "Dodano nowy artykuł", type: "SUCCESS" });
       queryClient.invalidateQueries(["articles"])
-      navigate("/search");
+      navigate("/articles");
     },
   });
 

@@ -9,6 +9,27 @@ const getAllTags= async()=>{
     return data;
 };
 
+const createTag= async({formData})=>{
+    const config={
+        withCredentials:true
+    }
+    const {data}= await axios.post("http://localhost:8000/api/tags/create",formData,config);
+    return data;
+};
+
+const updateTag= async({formData})=>{
+
+    const {tagId,name,shortname} = formData;
+  
+    const config={
+        withCredentials:true
+    }
+    const {data}= await axios.put(`http://localhost:8000/api/tags/edit/${tagId}`,{name,shortname},config);
+    return data;
+};
+
 export const tagsApi={
-    getAllTags
+    getAllTags,
+    createTag,
+    updateTag
 }
