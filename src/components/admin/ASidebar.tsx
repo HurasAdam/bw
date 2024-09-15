@@ -9,6 +9,7 @@ import {
 import { BsSearch } from "react-icons/bs";
 import { Link,  useLocation } from "react-router-dom";
 import { HiMiniHashtag } from "react-icons/hi2";
+import { IoArrowBack } from "react-icons/io5";
 import { IoStatsChartSharp } from "react-icons/io5";
 import { IoIosBookmark } from "react-icons/io";
 import { SiKnowledgebase } from "react-icons/si";
@@ -104,10 +105,10 @@ console.log(path)
       </div>
 
       <div className="">
-        <button className="w-full flex gap-2 p-2 items-center text-lg text-gray-800">
-          <MdSettings />
-          <span>Settings</span>
-        </button>
+        <Link to="/" className="w-full flex gap-2 p-2 items-center text-lg text-blue-200 font-semibold">
+          <IoArrowBack />
+          <span>Powrót</span>
+        </Link>
       </div>
     </div>
   );

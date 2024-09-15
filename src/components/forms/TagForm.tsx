@@ -3,12 +3,21 @@ import { useForm } from 'react-hook-form';
 import TextBox from '../core/TextBox';
 import Button from '../core/Button';
 import { MdOutlineAddCircle } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 import * as types from "../../types/index";
 import { useAppContext } from '../../contexts/AppContext';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { tagsApi } from '../../services/tagsApi';
+import ToastVariant from '../core/ToastVariant';
 
 interface ILoginFormProps{
     onSave:(formData:types.ILoginFormData)=>void;
     errorMessage?:string;
+    tag?:{
+      name:string;
+      shortname:string;
+    }
 }
 
 const TagForm:React.FC<ILoginFormProps> = ({onSave,errorMessage,tag}) => {
@@ -18,14 +27,23 @@ const {closeContentModal}=useAppContext();
 
     const {register, formState: { errors  },handleSubmit}=useForm({
         defaultValues:{
-          name:"",
-        shortName:"",
+          
+           name: tag ? tag?.name : "",
+        shortname: tag? tag?.shortname : "",
         },
         mode: "onChange",
       })
 
+
+
+
 const onSubmit = handleSubmit((data)=>{
-    onSave(data)
+  if(tag){
+    
+  return  onSave({formData:{...data, tagId:tag?._id},type:"UPDATE"})
+  }
+
+    onSave({formData:data,type:"CREATE"})
 })
 
 
@@ -36,8 +54,9 @@ const onSubmit = handleSubmit((data)=>{
       className='form-container w-full md:w-[440px] flex flex-col gap-y-8 bg-white px-10 pt-14 pb-14'
     >
       <div className='flex items-center gap-2'>
-      <MdOutlineAddCircle className='w-6 h-6'/> <p className='text-gray-600 text-xl font-semibold '>
-      Dodaj Tag
+      {tag? <FaEdit className='w-6 h-6'/> :<MdOutlineAddCircle className='w-6 h-6'/>}
+      <p className='text-gray-600 text-xl font-semibold '>
+    {tag ? `Edytuj  ${tag?.name}`:"Dodaj tag"}
         </p>
 
       </div>
@@ -57,21 +76,21 @@ const onSubmit = handleSubmit((data)=>{
         />
                  <TextBox
           placeholder='DZD'
-          type='password'
-          name='password'
+          type='text'
+          name='shortname'
           label='Skrótowy zapis'
            className='w-full rounded-lg'
-          register={register("shortName", {
+          register={register("shortname", {
             required: {
               value: true,
               message: "skrót jest wymagany",
             },
             minLength: {
-              value: 6,
+              value: 2,
               message: "Password length must be at least 6 characters",
             },
           })}
-          error={errors.shortName ? errors.shortName.message : ""}
+          error={errors.shortname ? errors.shortname.message : ""}
         />
 
   
@@ -85,7 +104,7 @@ const onSubmit = handleSubmit((data)=>{
         />
          <Button
           type='submit'
-          label='Dodaj'
+          label={tag ? "Zapisz":"Dodaj"}
           className='flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
         />
        </div>
