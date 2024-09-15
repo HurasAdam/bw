@@ -8,6 +8,7 @@ import {
 } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 import { Link,  useLocation } from "react-router-dom";
+import { IoCallSharp } from "react-icons/io5";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import { SiKnowledgebase } from "react-icons/si";
 import clsx from "clsx";
@@ -24,6 +25,11 @@ const sidebarLinks = [
     label: "Wyszukaj",
     link: "articles",
     icon: <BsSearch />,
+  },
+  {
+    label: "Rejestr rozmów",
+    link: "coversation-report",
+    icon: <IoCallSharp />,
   },
 
   {

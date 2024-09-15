@@ -23,6 +23,8 @@ import TodosBoardPage from "./pages/TodosBoardPage";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminTagsPage from "./pages/admin/AdminTagsPage";
+import AdminConversationTopicsPage from "./pages/admin/AdminConversationTopicsPage";
+import CoversationReportPage from "./pages/CoversationReportPage";
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
           <Route path="articles/:id" element={<ArticleDetails />} />
           <Route path="articles/:id/edit" element={<EditArticlePage />} />
           <Route path="favourites" element={<FavouritesPage />} />
+          <Route path="coversation-report" element={<CoversationReportPage />} />
           <Route path="statistics" element={<StatisticsPage />} />
           <Route path="todos-board" element={<TodosBoardPage />} />
           {/*  */}
@@ -52,6 +55,7 @@ function App() {
         <Route element={<AdminLayout />}>
       <Route path="/admin" element={<AdminDashboard/>}/>
       <Route path="admin/tags" element={<AdminTagsPage/>}/>
+      <Route path="admin/conversation-topics" element={<AdminConversationTopicsPage/>}/>
         </Route>
 
         <Route element={<GuestLayout />}>

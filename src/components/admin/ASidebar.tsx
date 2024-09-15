@@ -7,8 +7,10 @@ import {
   MdTaskAlt,
 } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
+import { MdPhoneInTalk } from "react-icons/md";
 import { Link,  useLocation } from "react-router-dom";
 import { HiMiniHashtag } from "react-icons/hi2";
+import { IoArrowBack } from "react-icons/io5";
 import { IoStatsChartSharp } from "react-icons/io5";
 import { IoIosBookmark } from "react-icons/io";
 import { SiKnowledgebase } from "react-icons/si";
@@ -29,22 +31,22 @@ const sidebarLinks = [
     link: "/admin/tags",
     icon: <HiMiniHashtag />,
   },
+
+
+  {
+    label: "Tematy rozów",
+    link: "admin/conversation-topics",
+    icon: <MdPhoneInTalk />,
+  },
   {
     label: "Statystyki",
     link: "statistics",
     icon: <IoStatsChartSharp />,
   },
-
-  {
-    label: "Moj planer",
-    link: "todos-board",
-    icon: <MdOutlinePendingActions />,
-  },
 ];
 
 const ASidebar: React.FC = () => {
   const { user } = useAppContext();
-  // const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname.split("/")[1];
 console.log(path)
@@ -104,10 +106,10 @@ console.log(path)
       </div>
 
       <div className="">
-        <button className="w-full flex gap-2 p-2 items-center text-lg text-gray-800">
-          <MdSettings />
-          <span>Settings</span>
-        </button>
+        <Link to="/" className="w-full flex gap-2 p-2 items-center text-lg text-blue-200 font-semibold">
+          <IoArrowBack />
+          <span>Powrót</span>
+        </Link>
       </div>
     </div>
   );

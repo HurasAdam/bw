@@ -10,17 +10,18 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { tagsApi } from '../../services/tagsApi';
 import ToastVariant from '../core/ToastVariant';
+import { Description } from '@headlessui/react';
 
 interface ILoginFormProps{
     onSave:(formData:types.ILoginFormData)=>void;
     errorMessage?:string;
-    tag?:{
-      name:string;
-      shortname:string;
+    topic?:{
+      title:string;
+      description:string;
     }
 }
 
-const TagForm:React.FC<ILoginFormProps> = ({onSave,errorMessage,tag}) => {
+const ConversationTopicForm:React.FC<ILoginFormProps> = ({onSave,errorMessage,topic}) => {
 
 const {closeContentModal}=useAppContext();
 
@@ -28,8 +29,8 @@ const {closeContentModal}=useAppContext();
     const {register, formState: { errors  },handleSubmit}=useForm({
         defaultValues:{
           
-           name: tag ? tag?.name : "",
-        shortname: tag? tag?.shortname : "",
+           title: topic ? topic?.title : "",
+        description: topic? topic?.description : "",
         },
         mode: "onChange",
       })
@@ -38,9 +39,9 @@ const {closeContentModal}=useAppContext();
 
 
 const onSubmit = handleSubmit((data)=>{
-  if(tag){
+  if(topic){
     
-  return  onSave({formData:{...data, tagId:tag?._id},type:"UPDATE"})
+  return  onSave({formData:{...data, topicId:topic?._id},type:"UPDATE"})
   }
 
     onSave({formData:data,type:"CREATE"})
@@ -54,9 +55,9 @@ const onSubmit = handleSubmit((data)=>{
       className='form-container w-full md:w-[440px] flex flex-col gap-y-8 bg-white px-10 pt-14 pb-14'
     >
       <div className='flex items-center gap-2'>
-      {tag? <FaEdit className='w-6 h-6'/> :<MdOutlineAddCircle className='w-6 h-6'/>}
+      {topic? <FaEdit className='w-6 h-6'/> :<MdOutlineAddCircle className='w-6 h-6'/>}
       <p className='text-gray-600 text-xl font-semibold '>
-    {tag ? `Edytuj  ${tag?.name}`:"Dodaj tag"}
+    {topic ? `Edytuj temat: ${topic?.title}`:"Dodaj temat rozmowy"}
         </p>
 
       </div>
@@ -64,33 +65,33 @@ const onSubmit = handleSubmit((data)=>{
       <div className='flex flex-col gap-y-5 '>
  
             <TextBox
-          placeholder='Dziennik zajęć dodatkowych'
+          placeholder='Promocja ucznia'
           type='text'
-          name='name'
-          label='Nazwa Tagu'
+          name='title'
+          label='Tytuł tematu'
            className='w-full rounded-lg'
-          register={register("name", {
+          register={register("title", {
             required: "nazwa jest wymagana",
           })}
-          error={errors.name ? errors.name.message : ""}
+          error={errors.title ? errors.title.message : ""}
         />
                  <TextBox
-          placeholder='DZD'
+          placeholder='Jak wykonać promocję ucznia, opis wszystkich kroków'
           type='text'
-          name='shortname'
-          label='Skrótowy zapis'
+          name='description'
+          label='Skrótowy opis'
            className='w-full rounded-lg'
-          register={register("shortname", {
+          register={register("description", {
             required: {
               value: true,
-              message: "skrót jest wymagany",
+              message: "Opis jest wymagany",
             },
             minLength: {
-              value: 2,
+              value: 6,
               message: "Password length must be at least 6 characters",
             },
           })}
-          error={errors.shortname ? errors.shortname.message : ""}
+          error={errors.description ? errors.description.message : ""}
         />
 
   
@@ -104,7 +105,7 @@ const onSubmit = handleSubmit((data)=>{
         />
          <Button
           type='submit'
-          label={tag ? "Zapisz":"Dodaj"}
+          label={topic ? "Zapisz":"Dodaj"}
           className='flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
         />
        </div>
@@ -117,4 +118,4 @@ const onSubmit = handleSubmit((data)=>{
   
 }
 
-export default TagForm;
+export default ConversationTopicForm;
