@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { MdPhoneInTalk } from "react-icons/md";
+import { MdNoteAdd } from "react-icons/md";
 
-// import { setOpenSidebar } from "../redux/authSlice";
+
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { authApi } from "../../services/authApi";
@@ -12,8 +14,11 @@ import Drawer from "./Drawer";
 import { NavLink } from "react-router-dom";
 import Modal from "./SearchModal";
 import SearchModal from "./SearchModal";
+import { useAppContext } from "../../contexts/AppContext";
+import ConversationSummaryForm from "../forms/ConversationSummaryForm";
 
 const Navbar: React.FC = ({ notifications }) => {
+  const {showContentModal} = useAppContext();
   const queryClient = useQueryClient();
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -50,14 +55,29 @@ const Navbar: React.FC = ({ notifications }) => {
       </div>
 
       <div className="flex gap-1 lg:gap-3 items-center">
+
+      <button
+      onClick={()=>{
+        showContentModal({
+          isOpen:true,
+          childrenComponent:(<ConversationSummaryForm/>)
+        })
+      }}
+          className="bg-blue-50 border hover:bg-slate-600 group  transition-all hover:font-bold px-2  py-2 rounded-lg shadow-xl   font-semibold  text-slate-100 "
+       
+        >
+          <MdPhoneInTalk className="text-secondary group-hover:text-white"/>
+        </button>
+      
         <NavLink
-          className="bg-blue-700 hover:bg-blue-600   transition-all hover:font-bold px-2.5  py-1 rounded-full  font-semibold  text-slate-100 "
+          className="shadow-xl  border  bg-blue-50 hover:bg-slate-600 group   transition-all hover:font-bold px-2 py-2 rounded-lg  font-semibold  text-slate-100 "
           to="articles/new-article"
         >
-          +
+          <MdNoteAdd className="text-secondary  w-4 h-4 group-hover:text-white"/>
         </NavLink>
         <NotificationPanel notifications={notifications} />
         <Drawer />
+        
         <UserAvatar logoutHandler={logoutHandler} />
       </div>
     </div>

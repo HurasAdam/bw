@@ -7,7 +7,7 @@ const Drawer = () => {
   <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content">
     {/* Page content here */}
-    <label htmlFor="my-drawer-4" className="cursor-pointer hover:text-blue-600 transition-all"><IoSettingsSharp/></label>
+    <label htmlFor="my-drawer-4" className="cursor-pointer "><div className=" group p-2 rounded-lg bg-blue-50 shadow-xl border hover:bg-slate-600 transition-all "><IoSettingsSharp className="text-secondary group-hover:text-white"/></div></label>
   </div>
   <div className="drawer-side">
     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>

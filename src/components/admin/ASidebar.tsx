@@ -7,6 +7,7 @@ import {
   MdTaskAlt,
 } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
+import { MdPhoneInTalk } from "react-icons/md";
 import { Link,  useLocation } from "react-router-dom";
 import { HiMiniHashtag } from "react-icons/hi2";
 import { IoArrowBack } from "react-icons/io5";
@@ -30,22 +31,22 @@ const sidebarLinks = [
     link: "/admin/tags",
     icon: <HiMiniHashtag />,
   },
+
+
+  {
+    label: "Tematy rozów",
+    link: "admin/conversation-topics",
+    icon: <MdPhoneInTalk />,
+  },
   {
     label: "Statystyki",
     link: "statistics",
     icon: <IoStatsChartSharp />,
   },
-
-  {
-    label: "Moj planer",
-    link: "todos-board",
-    icon: <MdOutlinePendingActions />,
-  },
 ];
 
 const ASidebar: React.FC = () => {
   const { user } = useAppContext();
-  // const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname.split("/")[1];
 console.log(path)
