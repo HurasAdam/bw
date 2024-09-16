@@ -74,10 +74,10 @@ const NotificationPanel = ({notifications}) => {
     <>
       <Popover className='relative'>
         <PopoverButton className='inline-flex items-center outline-none'>
-          <div className='w-8 h-8 flex items-center justify-center text-gray-800 relative border rounded-lg shadow-xl bg-blue-50'>
-            <IoNotifications className=' text-secondary' />
+          <div className='w-8 h-8 flex items-center justify-center text-gray-800 relative border rounded-lg group hover:bg-slate-600 shadow-xl bg-blue-50'>
+            <IoNotifications className=' text-secondary group-hover:text-white ' />
             {data?.length > 0 && (
-              <span className='absolute text-center top-[-4px] left-4 text-xs text-white font-semibold w-4  h-4 rounded-lg bg-gray-700'>
+              <span className='absolute text-center top-[-4px] left-4 text-xs group-hover:bg-secondary  text-white font-semibold w-4 h-4 rounded-lg bg-gray-700'>
                 {data?.length}
               </span>
             )}

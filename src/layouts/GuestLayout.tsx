@@ -14,12 +14,12 @@ const{user,isLoading}=useAppContext();
   return <Navigate to="/"/>
 }
   return (
-    <section className='nin-h-screen flex w-full'>
+    <section className='nin-h-screen flex w-full bg-blue-100'>
       <div className='flex-1 my-auto hidden lg:flex flex-col items-center mt-20'>
         <h1 className=' text-6xl text-indigo-800 font-bold'>Baza wiedzy</h1>
 <img className='w-auto max-h-[700px]' src={CONSTANTS.IMAGES.landingImage} alt="" />
 </div>
-          <div className='flex-1 md:w-2/5 h-screen '>
+          <div className='flex-1 md:w-2/5 h-screen bg-white '>
        
     <Outlet/>
     </div>

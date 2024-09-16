@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
 import { MdTaskAlt } from "react-icons/md";
-import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
-import { IoIosHelpCircleOutline } from "react-icons/io";
+import { IoOpenOutline } from "react-icons/io5";
+import { MdQuestionMark } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { utils } from "../../utils";
 
@@ -59,7 +59,7 @@ const TableRow: React.FC<TableRowProps> = ({
                 data[key] ? (
                   <MdTaskAlt className="text-green-500 w-[16px] h-auto" />
                 ) : (
-                  <IoIosHelpCircleOutline className="text-secondary w-[16px] h-auto" />
+                  <MdQuestionMark className="text-gray-500/80 w-[16px] h-auto" />
                 )
               ) : key === "tags" ? (
                 <div className=" hidden lg:flex flex-wrap gap-x-1 gap-y-2 lg:max-w-[400px] ">
@@ -68,7 +68,7 @@ const TableRow: React.FC<TableRowProps> = ({
                       key={tag?._id}
                       className="bg-tag-light text-white px-[8.5px] py-[5px] rounded-lg text-xs "
                     >
-                      {tag?.name}
+                      {tag?.shortname}
                     </span>
                   ))}
                 </div>
@@ -107,9 +107,9 @@ const TableRow: React.FC<TableRowProps> = ({
         <td>
           <NavLink
             to={`/articles/${data?._id}`}
-            className=" rounded text-white bg-blue-500 outline-none py-1.5 px-2.5"
+            className="flex"
           >
-            Zobacz
+            <IoOpenOutline className="w-5 h-5 text-blue-600/70 " />
           </NavLink>
         </td>
       )}
