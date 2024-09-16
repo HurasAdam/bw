@@ -71,7 +71,7 @@ return(
 
   return (
     <>
-      <div>
+      <div className="text-slate-600 text-sm">
       
         
 <Dropdown ICON={<UserIcon/>  }options={dropdownOptions}/>
