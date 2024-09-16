@@ -6,9 +6,20 @@ import UserProfileForm from './forms/UserProfileForm'
 import { MdManageAccounts } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { UserPasswordForm } from './forms/UserPasswordForm'
+import { useQuery } from '@tanstack/react-query'
+import { userApi } from '../services/userApi'
 
 const Profile = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+
+
+const {data:user} = useQuery({
+  queryFn:()=>{
+    return userApi.getMyProfile()
+  },
+  queryKey:["me"]
+});
 
 
 const tabNames = [
@@ -38,7 +49,7 @@ const title = tabNames[selectedIndex]
         </TabList>
         <TabPanels>
           <TabPanel>
-    <UserProfileForm/>
+{   user&& <UserProfileForm user={user}/>}
           </TabPanel>
 
           {/* PASSWORD */}

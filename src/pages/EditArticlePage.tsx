@@ -7,6 +7,8 @@ import { articlesApi } from '../services/articlesApi'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppContext } from '../contexts/AppContext';
 import { tagsApi } from '../services/tagsApi';
+import toast from "react-hot-toast";
+import ToastVariant from '../components/core/ToastVariant';
 
 const EditArticlePage:React.FC = () => {
   const { showToast, isLoggedIn } = useAppContext();
@@ -46,8 +48,11 @@ const EditArticlePage:React.FC = () => {
       });
     },
     onSuccess: () => {
-      showToast({ message: "Artukuł został zaktualizowany", type: "SUCCESS" });
-      navigate("/articles");
+
+      navigate(`/articles/${id}`);
+      toast.custom((t) => (
+        <ToastVariant t={t} message="Artykuł został zaktualizowany" variant="SUCCESS"/>
+        ))
     },
   });
 

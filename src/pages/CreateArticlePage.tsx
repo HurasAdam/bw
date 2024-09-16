@@ -6,6 +6,8 @@ import { tagsApi } from "../services/tagsApi";
 import { articlesApi } from "../services/articlesApi";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import ToastVariant from "../components/core/ToastVariant";
 
 const CreateArticlePage = () => {
   const { showToast, isLoggedIn } = useAppContext();
@@ -30,7 +32,9 @@ const CreateArticlePage = () => {
       });
     },
     onSuccess: () => {
-      showToast({ message: "Dodano nowy artykuł", type: "SUCCESS" });
+      toast.custom((t) => (
+        <ToastVariant t={t} message="Artykuł został dodany"variant="SUCCESS"/>
+        ))
       queryClient.invalidateQueries(["articles"])
       navigate("/articles");
     },

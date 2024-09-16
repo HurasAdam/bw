@@ -2,9 +2,33 @@ import React from 'react'
 import TextBox from '../core/TextBox'
 import Button from '../core/Button'
 import { useAppContext } from '../../contexts/AppContext';
+import { useForm } from 'react-hook-form';
 
-const UserProfileForm = () => {
-  const {showModal,closeContentModal,showToast} = useAppContext();
+const UserProfileForm = ({user}) => {
+  const {closeContentModal} = useAppContext();
+
+
+
+  const {
+    watch,
+    setValue,
+    register,
+    control,
+    setError,
+    clearErrors,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    defaultValues:{
+      name: user ? user?.name: "",
+      surname: user ? user?.surname: "",
+      email: user ? user?.email: "",
+    },
+    mode: "onChange",
+  });
+
+
+
   return (
     <div className='w-full p-4 md:p-1 flex flex-col items-center min-h-full'>
     <form
@@ -12,25 +36,34 @@ const UserProfileForm = () => {
     >
       <div className='flex flex-col gap-y-7'>
         <TextBox
-          placeholder='your password'
-          type='email'
-          name='email'
+          placeholder='imię'
+          type='text'
+          name='name'
           label='Imię'
           className='w-full rounded-lg'
+          register={register("name", {
+            required: "Tytuł jest wymagany",
+          })}
         />
         <TextBox
-          placeholder='your password'
-          type='password'
-          name='password'
+          placeholder='nazwisko'
+          type='text'
+          name='surname'
           label='Nazwisko'
           className='w-full rounded-lg'
+          register={register("surname", {
+            required: "Tytuł jest wymagany",
+          })}
         />
         <TextBox
-          placeholder='your password'
-          type='password'
-          name='password'
+          placeholder='email'
+          type='email'
+          name='email'
           label='Email'
           className='w-full rounded-lg'
+          register={register("email", {
+            required: "Tytuł jest wymagany",
+          })}
         />
   <div className='flex justify-end gap-5'>
   <Button
