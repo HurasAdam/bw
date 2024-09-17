@@ -9,7 +9,8 @@ export default {
         secondary: "rgb(234, 107, 84)",
       },
       fontFamily:{
-        'poppins': ['Poppins', 'sans-serif'], // Dodaj Poppins
+        'poppins': ['Poppins', 'sans-serif'],
+        inter: ['Inter', 'sans-serif']
       }
     },
   },

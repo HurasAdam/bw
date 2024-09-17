@@ -12,6 +12,7 @@ import { RiContactsBook3Fill } from "react-icons/ri";
 import { SiKnowledgebase } from "react-icons/si";
 import clsx from "clsx";
 import { useAppContext } from "../../contexts/AppContext";
+import { IoCallSharp } from "react-icons/io5";
 
 
 const sidebarLinks = [
@@ -24,6 +25,11 @@ const sidebarLinks = [
     label: "Wyszukaj",
     link: "articles",
     icon: <BsSearch />,
+  },
+  {
+    label: "Rejestr rozmów",
+    link: "coversation-report",
+    icon: <IoCallSharp />,
   },
 
   {

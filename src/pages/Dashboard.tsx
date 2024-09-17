@@ -26,37 +26,74 @@ const Dashboard:React.FC = () => {
 
   return (
     <div className="px-5  pb-10 pt-6  rounded-lg">
+{/*  */}
+      <div className="grid-rows lg:grid grid-cols-[6fr_3fr] gap-6 mb-4">
+        <div className=" h-screen rounded bg-gray-50 flex flex-col ">
+          <div className="grid grid-cols-3 gap-5">
+<div className="bg-blue-50 h-28 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter">
+  <span className="text-2xl font-bold text-indigo-600/90 ">44</span>
+  <span className="text-blue-500/80 font-semibold text-sm ">Liczba wszystkich artykułow</span>
+</div>
+<div className="bg-blue-50 h-28 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter">
+  <span className="text-2xl font-bold text-indigo-600/90">44</span>
+  <span className="text-blue-500/80 font-semibold text-sm">Liczba wszystkich artykułow</span>
+</div>
+<div className="bg-blue-50 h-28 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter">
+  <span className="text-2xl font-bold text-indigo-600/90">44</span>
+  <span className="text-blue-500/80 font-semibold text-sm">Liczba wszystkich artykułow</span>
+</div>
 
-      <div className="grid grid-cols-3 gap-4 mb-4">
-        <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500"></p>
+          </div>
+
+          <div className="grid grid-rows gap-3.5 my-6">
+            <h2 className="font-semibold font-inter text-[13px] text-gray-500">Ostatnio dodane artykuły</h2>
+<div className="border px-3 py-2.5 rounded-md">1</div>
+<div className="border px-3 py-2.5 rounded-md">1</div>
+<div className="border px-3 py-2.5 rounded-md">1</div>
+<div className="border px-3 py-2.5 rounded-md">1</div>
+<div className="border px-3 py-2.5 rounded-md">1</div>
+<div className="border px-3 py-2.5 rounded-md">1</div>
+<div className="border px-3 py-2.5 rounded-md">1</div>
+<div className="border px-3 py-2.5 rounded-md">1</div>
+
+
+          </div>
         </div>
-        <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500"></p>
+
+
+
+
+
+
+        <div className=" grid grid-rows h-screen rounded bg-gray-50 ">
+       <div className="bg-green-300">
+        <h3>Najczęsciej odnotowywane tematy rozmó</h3>
+       <div className="border px-3 py-2.5 rounded">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       </div>
+
+       {/*  */}
+       <div className="bg-indigo-300">
+<h3>Najpopularniejsze artykuły</h3>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+       <div className="border px-3 py-2.5 rounded-md">1</div>
+
+       </div>
+{/*  */}
+
+
         </div>
-        <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500"></p>
-        </div>
-      </div>
-{isLoading ? (
-      <div className=" min-h-[700px] flex justify-center items-center border flex-col bg-slate-50 rounded-md">
-      <span className="loading loading-dots loading-lg text-blue-600 scale-[1.5]"></span>
-      <span className="font-bold text-lg text-slate-400">Pobierane artykułow</span>
-  </div>
-):( <div className="flex flex-col gap-2">
-  <Table
-    headers={data.articleHeaders}
-    data={latestArticles?.data}
-    showId={true}
-    showAction={true}
-  />
-</div>)}
      
-      <Pagination
-        page={latestArticles?.pagination.page || 1}
-        pages={latestArticles?.pagination.pages || 1}
-        onPageChange={(page) => setPage(page)}
-      />
+      </div>
+{/*  */}
+
     </div>
   );
 };
