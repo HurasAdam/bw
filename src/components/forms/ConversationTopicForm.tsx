@@ -87,7 +87,7 @@ const onSubmit = handleSubmit((data)=>{
               message: "Opis jest wymagany",
             },
             minLength: {
-              value: 6,
+              value: 3,
               message: "Password length must be at least 6 characters",
             },
           })}
