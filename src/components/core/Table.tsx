@@ -45,6 +45,7 @@ const Table: React.FC<TableProps> = ({
               data={item}
               showId={showId}
               showTextarea={showTextarea}
+              showCreatedAt={false}
             />
           ))}
         </tbody>
