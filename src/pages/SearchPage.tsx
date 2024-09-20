@@ -67,7 +67,7 @@ console.log(debouncedValue);
           <Table
             headers={data.articleHeaders}
             data={articles?.data}
-            showId={true}
+            
             showAction={true}
           />
         </div>

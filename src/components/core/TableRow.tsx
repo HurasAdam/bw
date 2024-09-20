@@ -8,12 +8,14 @@ import { utils } from "../../utils";
 
 interface TableRowProps {
   data: Record<string, any>; // Dynamiczny obiekt danych
+  showCreatedAt:boolean;
   showId?: boolean; // Prop do kontrolowania widoczności ID
   currentUserId: string; // ID aktualnie zalogowanego użytkownika
 }
 
 const TableRow: React.FC<TableRowProps> = ({
   data,
+  showCreatedAt =true,
   showId = false,
   currentUserId,
   showTextarea,
@@ -52,37 +54,41 @@ const TableRow: React.FC<TableRowProps> = ({
       {showId && <td className="py-2 hidden lg:flex">{data._id}</td>}
 
       {Object.keys(data).map((key) => {
-        if (key !== "_id") {
+        if (key !== "_id" && key !=='createdAt') {
           return (
             <td className="" key={key}>
-              {key === "isVerified" ? (
-                data[key] ? (
-                  <MdTaskAlt className="text-green-500 w-[16px] h-auto" />
-                ) : (
-                  <MdQuestionMark className="text-gray-500/80 w-[16px] h-auto" />
-                )
-              ) : key === "tags" ? (
-                <div className=" hidden lg:flex flex-wrap gap-x-1 gap-y-2 lg:max-w-[400px] ">
-                  {(data[key] as string[]).map((tag) => (
-                    <span
-                      key={tag?._id}
-                      className="bg-tag-light text-white px-[8.5px] py-[5px] rounded-lg text-xs "
-                    >
-                      {tag?.shortname}
-                    </span>
-                  ))}
-                </div>
-              ) : key === "updatedAt" ? (
-                <div className="hidden lg:flex flex-wrap gap-x-1 gap-y-2 lg:max-w-[400px]  ">
-                  {" "}
-                  {utils.dateFormatter(data[key])}
-                </div>
+            {key === "isVerified" ? (
+              data[key] ? (
+                <MdTaskAlt className="text-green-500 w-[16px] h-auto" />
               ) : (
-                <span className="font-semibold text-gray-600 text-[13px]">
-                  {data[key]}
-                </span>
-              )}
-            </td>
+                <MdQuestionMark className="text-gray-500/80 w-[16px] h-auto" />
+              )
+            ) : key === "tags" ? (
+              <div className="hidden lg:flex flex-wrap gap-x-1 gap-y-2 lg:max-w-[400px]">
+                {(data[key] as string[]).map((tag) => (
+                  <span
+                    key={tag?._id}
+                    className="bg-tag-light text-white px-[8.5px] py-[5px] rounded-lg text-xs"
+                  >
+                    {tag?.shortname}
+                  </span>
+                ))}
+              </div>
+            ) : key === "createdBy" ? (
+              // Renderowanie pełnego imienia i nazwiska osoby, która utworzyła wpis
+              <span className="font-semibold text-gray-600 text-xs">
+                {`${data[key]?.name} ${data[key]?.surname}`}
+              </span>
+            ) : key === "createdAt" && showCreatedAt ? (
+              <span className="font-semibold text-gray-600 text-[13px]">
+                {utils.dateFormatter(data[key])}
+              </span>
+            ) : (
+              <span className="font-semibold text-gray-600 text-[13px]">
+                {data[key]}
+              </span>
+            )}
+          </td>
           );
         }
         return null;
