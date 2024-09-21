@@ -50,13 +50,13 @@ const TableRow: React.FC<TableRowProps> = ({
   };
 
   return (
-    <tr className="  hover:bg-blue-200/10  border-b-blue-100 ">
+    <tr className="  hover:bg-indigo-200/20  border-b-gray-200/50  ">
       {showId && <td className="py-2 hidden lg:flex">{data._id}</td>}
 
       {Object.keys(data).map((key) => {
         if (key !== "_id" && key !=='createdAt') {
           return (
-            <td className="" key={key}>
+            <td className="py-3.5 " key={key}>
             {key === "isVerified" ? (
               data[key] ? (
                 <MdTaskAlt className="text-green-500 w-[16px] h-auto" />
@@ -76,17 +76,17 @@ const TableRow: React.FC<TableRowProps> = ({
               </div>
             ) : key === "createdBy" ? (
               // Renderowanie pełnego imienia i nazwiska osoby, która utworzyła wpis
-              <span className="font-semibold text-gray-600 text-xs">
+              <div className="font-semibold text-gray-600 text-xs">
                 {`${data[key]?.name} ${data[key]?.surname}`}
-              </span>
+              </div>
             ) : key === "createdAt" && showCreatedAt ? (
-              <span className="font-semibold text-gray-600 text-[13px]">
+              <div className="font-semibold text-gray-600 text-[13px]">
                 {utils.dateFormatter(data[key])}
-              </span>
+              </div>
             ) : (
-              <span className="font-semibold text-gray-600 text-[13px]">
+              <div className="font-semibold text-gray-600  text-sm  min-w-[360px] max-w-[440px]">
                 {data[key]}
-              </span>
+              </div>
             )}
           </td>
           );
