@@ -25,8 +25,8 @@ const TableHeader: React.FC<TableHeaderProps> = ({ headers }) => {
 
 
  return (
-    <thead className="bg-blue-50  border-indigo-100 min-w-full ">
-      <tr className="w-full">
+    <thead className="bg-blue-300/20  min-w-full ">
+      <tr className="w-full text-gray-700">
         {headers.map((header, index) => {
           console.log(header)
            return(

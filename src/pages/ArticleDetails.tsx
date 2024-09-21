@@ -354,7 +354,7 @@ if (isLoading) {
             );
           })}
         </div>
-        <div className=" p-2.5 border bg-blue-50 rounded shadow-sm flex items-center justify-between">
+        <div className=" py-2.5 px-3  border border-blue-100/50  bg-blue-100/50 rounded shadow-sm flex items-center justify-between">
           <span className="text-xl">{article?.title}</span>
           <div className="flex items-center gap-16  px-2">
           {article?.isFavourite && <AiFillStar className="text-amber-500 w-[18px] h-[18px] "/>}
@@ -385,7 +385,7 @@ if (isLoading) {
   </Collapse>
         </div>
         <div className=" p-1 xl:p-5 h-fit min-h-[300px] xl:sticky top-[74px]  flex flex-col gap-2 ">
-          <div className="flex flex-col shadow-md pb-2 px-3 py-1 rounded-md">
+          <div className="flex flex-col shadow-md pb-2 px-3 py-1.5 rounded-md">
             <span className="text-sm text-slate-500 font-semibold">
               Status:{" "}
             </span>
@@ -403,7 +403,7 @@ if (isLoading) {
             )}
           </div>
           {/*  */}
-          <div className="flex flex-col shadow-md pb-2 px-3 py-1 rounded-md">
+          <div className="flex flex-col shadow-md pb-2 px-3 py-1.5 rounded-md">
             <span className="text-sm text-slate-500 font-semibold">
               ID:{" "}
             </span>
@@ -414,7 +414,7 @@ if (isLoading) {
             </span>
           </div>
           {/*  */}
-          <div className="flex flex-col shadow-md pb-2 px-3 py-1 rounded-md">
+          <div className="flex flex-col shadow-md pb-2 px-3 py-1.5 rounded-md">
             <span className="text-sm text-slate-500 font-semibold">
               Dodano:{" "}
             </span>
@@ -425,7 +425,7 @@ if (isLoading) {
             </span>
           </div>
           {/*  */}
-          <div className="flex flex-col shadow-md pb-2 px-3 py-1 rounded-md">
+          <div className="flex flex-col shadow-md pb-2 px-3 py-1.5 rounded-md">
             <span className="text-sm text-slate-500 font-semibold">
               Autor:{" "}
             </span>
@@ -436,7 +436,7 @@ if (isLoading) {
             </span>
           </div>
           {/*  */}
-          <div className="flex flex-col shadow-md pb-2 px-3 py-1 rounded-md">
+          <div className="flex flex-col shadow-md pb-2 px-3 py-1.5 rounded-md">
             <span className="text-sm text-slate-500 font-semibold">
               liczba odsłon:{" "}
             </span>

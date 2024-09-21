@@ -48,35 +48,53 @@ console.log(debouncedValue);
 
 
   return (
-    <div className="flex flex-col gap-1 px-[21px] py-3 ">
+    <div className="flex flex-col gap-1 px-[21px] py-3  ">
+      
       <h2 className="text-xl font-bold text-gray-600 px-0.5 pt-2 mb-3 flex items-center gap-2"><SiPowerpages className="text-blue-900"/>Baza Arykułów</h2>
       <div className="bg-sky-50 w-full px-2 py-2 text-sm rounded-md">
         <span className="font-semibold text-slate-500">Znaleziono<span className="mx-2 text-blue-800 font-bold">{articles?.pagination?.total}</span>Artykułów</span>
       </div>
-      <div className="sticky top-[61px] bg-white z-10 ">
-        <SearchBar className="w-2/5 mx-auto "  refetch={refetch} tagsList={tagsList}/>
-      </div>
+
+
+      <div className="flex gap-5 rounded-md">
+   
+  
+
+
 
       {isLoading ? (
-    <div className=" min-h-[700px] flex justify-center items-center border flex-col bg-slate-50 rounded-md">
+    <div className=" min-h-[700px] flex justify-center items-center border flex-col bg-slate-50 rounded-md w-full">
          <span className="loading loading-dots loading-lg text-blue-600 scale-[1.5]"></span>
          <span className="font-bold text-lg text-slate-400">Pobierane artykułow</span>
     </div>
       ) : (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-full  ">
+
           <Table
             headers={data.articleHeaders}
             data={articles?.data}
             
             showAction={true}
           />
-        </div>
-      )}
- { articles?.pagination.pages >1  &&   <Pagination
+
+<div className="flex justify-end">
+{ articles?.pagination.pages >1  &&   <Pagination
         currentPage={articles?.pagination.page || 1}
         pages={articles?.pagination.pages || 1}
      
       />}
+</div>
+        </div>
+      )}
+
+<div className="sticky top-[61px]  z-10 w-[330px] p-4 border shadow-sm rounded max-h-fit min-h-[350px] bg-white">
+        <SearchBar className=" flex-col gap-3.5"  refetch={refetch} tagsList={tagsList}/>
+      </div>
+
+
+
+      </div>
+
     </div>
   );
 };
