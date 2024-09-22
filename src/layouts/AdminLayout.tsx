@@ -23,9 +23,9 @@ const AdminLayout = () => {
     {/* <MobileSidebar />  */}
 
     <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-white  ">
-      <div className="px-5  bg-white rounded-tl-2xl rounded-bl-2xl min-h-full h-fit">
+      <div className="px-16  bg-stone-50 rounded-tl-2xl rounded-bl-2xl min-h-full h-fit">
         <ANavbar  />
-      <div className=" px-9 mt-4   ">  <Breadcrumbs/></div>
+      <div className="  mt-4   ">  <Breadcrumbs/></div>
         <Outlet />
       </div>
     </div>
