@@ -13,17 +13,18 @@ import { tagsApi } from "../services/tagsApi";
 import useArticleFilters from "../hooks/useArticleFilters";
 import { useDebounce } from "../hooks/useDebounce";
 import CONSTANTS from "../constants";
+import { userApi } from "../services/userApi";
 
 const SearchPage = () => {
   
-const {title,tags,setFilters,page} = useArticleFilters();
+const {title,tags,author,setFilters,page,verified} = useArticleFilters();
 
 const {debouncedValue} = useDebounce({value:title,delay:CONSTANTS.DEBOUNCE_DELAY_MS})
 
 console.log(debouncedValue);
 
   const queryParams={
-    page,title:debouncedValue,tags
+    page,title:debouncedValue,tags,author,verified
   }
 
 
@@ -45,6 +46,15 @@ console.log(debouncedValue);
     refetchOnWindowFocus: false,
   });
 
+
+  const { data: authorsList,refetch:fetchUsers } = useQuery({
+    queryFn: () => {
+      return userApi.getUsers();
+    },
+    queryKey: ["authors"],
+    enabled:false,
+    refetchOnWindowFocus: false,
+  });
 
 
   return (
@@ -87,8 +97,9 @@ console.log(debouncedValue);
         </div>
       )}
 
-<div className="sticky top-[61px]  z-10 w-[330px] p-4 border shadow-sm rounded max-h-fit min-h-[350px] bg-white">
-        <SearchBar className=" flex-col gap-3.5"  refetch={refetch} tagsList={tagsList}/>
+<div className="sticky top-[61px]  z-10 w-[380px] px-6 pt-3 pb-4 border border-slate-300/70  rounded max-h-fit min-h-[350px] bg-white">
+<h3 className="mb-2.5 text-xl font-semibold font-inter text-gray-800/80">Filtry</h3>
+        <SearchBar className=" flex-col gap-2.5"  refetch={refetch} tagsList={tagsList} authorsList={authorsList} fetchUsers={fetchUsers}/>
       </div>
 
 

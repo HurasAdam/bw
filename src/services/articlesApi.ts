@@ -27,6 +27,10 @@ const getAllArticles = async (searchParams) => {
   const queryParams = new URLSearchParams();
   queryParams.append("page", searchParams.page);
   queryParams.append("title", searchParams.title );
+  queryParams.append("author", searchParams.author );
+  if (searchParams.verified !== null && searchParams.verified !== undefined) {
+    queryParams.append("verified", searchParams.verified);
+}
 
   if (searchParams.tags && searchParams.tags.length > 0) {
     searchParams.tags.forEach((tag) => {

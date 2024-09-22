@@ -9,12 +9,18 @@ const useArticleFilters = ()=>{
     const title = searchParams.get("title") || "";
     const tags = searchParams.getAll("tags");
     const page = searchParams.get("page") ||1;
-
+    const author = searchParams.get("author") || "";
+    const verified = searchParams.get("verified");
 
     const setFilters = useCallback((filters) => {
         setSearchParams((params) => {
             if (filters.title !== undefined) {
-                params.set('title', filters.title);
+                if (filters.title === "") {
+                    params.delete("title"); 
+                }else{
+                    params.set('title', filters.title);
+                }
+           
             } 
 
             if (filters.tags !== undefined) {
@@ -28,6 +34,22 @@ const useArticleFilters = ()=>{
                 params.set("page", filters.page.toString());
               }
 
+              if (filters.author !== undefined) {
+                if (filters.author === "") {
+                    params.delete("author");  // Usuwamy parametr author, jeśli jest pusty
+                } else {
+                    params.set("author", filters.author.value); // Inaczej ustawiamy wartość autora
+                }
+            }
+
+            if (filters.verified !== undefined) {
+                if (filters.verified === false) {
+                    params.delete("verified"); // Usuń parametr, gdy wartość to false
+                } else if (filters.verified === true) {
+                    params.set("verified", "true"); // Ustawiaj jako "true", gdy checkbox jest zaznaczony
+                }
+            }
+
             return params;
         });
     }, []);
@@ -36,6 +58,8 @@ return {
     title,
     tags,
     page,
+    author,
+    verified,
     setFilters
 }
 
