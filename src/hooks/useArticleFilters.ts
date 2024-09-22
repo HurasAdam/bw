@@ -11,6 +11,7 @@ const useArticleFilters = ()=>{
     const page = searchParams.get("page") ||1;
     const author = searchParams.get("author") || "";
     const verified = searchParams.get("verified");
+    const limit = searchParams.get("limit");
 
     const setFilters = useCallback((filters) => {
         setSearchParams((params) => {
@@ -22,6 +23,14 @@ const useArticleFilters = ()=>{
                 }
            
             } 
+
+            if (filters.limit !== undefined) {
+                if (filters.limit === "" || limit ===null) {
+                    params.delete("limit");  // Usuwamy parametr author, jeśli jest pusty
+                } else {
+                    params.set("limit", filters.limit); // Inaczej ustawiamy wartość autora
+                }
+            }
 
             if (filters.tags !== undefined) {
                 params.delete('tags');
@@ -60,6 +69,7 @@ return {
     page,
     author,
     verified,
+    limit,
     setFilters
 }
 

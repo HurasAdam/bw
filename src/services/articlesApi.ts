@@ -28,6 +28,10 @@ const getAllArticles = async (searchParams) => {
   queryParams.append("page", searchParams.page);
   queryParams.append("title", searchParams.title );
   queryParams.append("author", searchParams.author );
+
+  if(searchParams.limit !==null && searchParams.limit !==undefined){
+    queryParams.append("limit",searchParams.limit);
+  }
   if (searchParams.verified !== null && searchParams.verified !== undefined) {
     queryParams.append("verified", searchParams.verified);
 }
