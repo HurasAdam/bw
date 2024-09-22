@@ -13,10 +13,13 @@ const {setFilters} = useArticleFilters();
 const navigate = useNavigate();
 const [localTitle, setLocalTitle] = useState('');
 const [localTags, setLocalTags] = useState([]);
+const [localAuthor, setLocalAuthor] = useState("");
+const [localVerified,setLocalVerified] = useState(false);
 
 
 
-
+console.log("localTags")
+console.log(localTags)
 
 
 
@@ -31,18 +34,41 @@ const {data:tags,refetch}=useQuery({
 
 
 const searchHandler = () => {
-  const queryParams = new URLSearchParams({
-    title: localTitle
-  });
+  // Ustawienie pustych wartości w hooku useArticleFilters (dla czyszczenia parametrów)
+  setFilters({ title: "", verified: false, author: "", tags: [] });
 
-  // Dodaj każdy tag jako oddzielny parametr
-  localTags.forEach(tag => {
-    queryParams.append('tags', tag.value);
-  });
+  // Tworzymy obiekt URLSearchParams i ręcznie ustawiamy warunki
+  const queryParams = new URLSearchParams();
 
-  // Generuj pełny query string i przekieruj
-  setFilters({title:""})
+  // Ustawiamy tytuł, jeśli nie jest pusty
+  if (localTitle) {
+    queryParams.set('title', localTitle);
+  }
+
+  // Dodajemy każdy tag jako osobny parametr
+  if (localTags.length > 0) {
+    localTags.forEach(tag => {
+      queryParams.append('tags', tag?.value);
+    });
+  }
+
+  // Ustawiamy autora, jeśli nie jest pusty
+  if (localAuthor) {
+    queryParams.set('author', localAuthor);
+  }
+
+  // Dodajemy parametr 'verified' tylko wtedy, gdy jego wartość to true
+  if (localVerified) {
+    queryParams.set('verified', "true");
+  }
+
+  // Przekierowanie do wyników z dynamicznie generowanymi parametrami
   navigate(`/articles?${queryParams.toString()}`);
+
+  // Czyszczenie lokalnych stanów po wyszukiwaniu
+  setLocalTags([]);
+  setLocalTitle("");
+  setLocalAuthor("");
   setIsModalOpen(false);
 };
 
@@ -51,16 +77,22 @@ const searchHandler = () => {
       
       <Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)} className="relative z-50">
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-zinc-900/60 ">
-          <DialogPanel className="min-w-[600px] rounded-md space-y-10 border bg-white p-12">
+          <DialogPanel className="min-w-[620px] max-w-[620px] rounded-md space-y-10 border bg-white p-12">
             <DialogTitle className="font-bold text-2xl text-slate-600 flex items-center gap-2"><FcSearch/> Wyszukaj artykuł</DialogTitle>
-            <Description>
+            <Description className="">
               <SearchBar 
             refetch={refetch} 
             tagsList={tags}
             onTitleChange={setLocalTitle}
             onTagsChange={setLocalTags}
+            onAuthorChange={setLocalAuthor}
+            onVerifyChange={setLocalVerified}
             instantSearch={false}
+            localVerified={localVerified}
+            localAuthor={localAuthor}
+            localTitle={localTitle}
         gap="1"
+        className="flex-col flex"
             />
             </Description>
  

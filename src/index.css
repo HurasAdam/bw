@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 .react-select__control {
-  @apply p-0.5 border bg-white border-gray-400/80 outline-none focus:outline-none !important; 
+  @apply p-0.5 border bg-gray-50 rounded-lg border-gray-400/80 outline-none focus:outline-none !important; 
 }
-
 
 
   

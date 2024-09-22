@@ -6,7 +6,7 @@ import { AiFillEye } from 'react-icons/ai';
 
 const ArticleDetailsSkeleton = ({children}) => {
   return (
-    <div className="p-12 flex flex-col gap-10 relative">
+    <div className="py-12 px-3 flex flex-col gap-10 relative">
       <div className="text-sm flex flex-col gap-3.5 text-slate-600 font-semibold">
         <div className="flex gap-1.5">
           {[{name:"Synergia"},{name:"e-Sekretariat"},{name:"abc"}].map((tag) => {

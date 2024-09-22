@@ -58,7 +58,7 @@ console.log(debouncedValue);
 
 
   return (
-    <div className="flex flex-col gap-1 px-[21px] py-3  ">
+    <div className="flex flex-col gap-1  py-3  ">
       
       <h2 className="text-xl font-bold text-gray-600 px-0.5 pt-2 mb-3 flex items-center gap-2"><SiPowerpages className="text-blue-900"/>Baza Arykułów</h2>
       <div className="bg-sky-50 w-full px-2 py-2 text-sm rounded-md">
@@ -73,12 +73,12 @@ console.log(debouncedValue);
 
 
       {isLoading ? (
-    <div className=" min-h-[700px] flex justify-center items-center border flex-col bg-slate-50 rounded-md w-full">
+    <div className=" min-h-[1100px] flex justify-center items-center border flex-col bg-slate-50 rounded-md w-full ">
          <span className="loading loading-dots loading-lg text-blue-600 scale-[1.5]"></span>
          <span className="font-bold text-lg text-slate-400">Pobierane artykułow</span>
     </div>
       ) : (
-        <div className="flex flex-col gap-2 w-full  ">
+        <div className="flex flex-col gap-2 w-full   ">
 
           <Table
             headers={data.articleHeaders}
@@ -87,7 +87,7 @@ console.log(debouncedValue);
             showAction={true}
           />
 
-<div className="flex justify-end">
+<div className="flex justify-end  ">
 { articles?.pagination.pages >1  &&   <Pagination
         currentPage={articles?.pagination.page || 1}
         pages={articles?.pagination.pages || 1}
@@ -97,9 +97,9 @@ console.log(debouncedValue);
         </div>
       )}
 
-<div className="sticky top-[61px]  z-10 w-[380px] px-6 pt-3 pb-4 border border-slate-300/70  rounded max-h-fit min-h-[350px] bg-white">
+<div className="sticky top-[61px]  z-10 w-[380px] px-6 pt-3 pb-4 border   border-gray-300/80 shadow-sm rounded max-h-fit max-w-[380px] min-h-[350px] bg-white">
 <h3 className="mb-2.5 text-xl font-semibold font-inter text-gray-800/80">Filtry</h3>
-        <SearchBar className=" flex-col gap-2.5"  refetch={refetch} tagsList={tagsList} authorsList={authorsList} fetchUsers={fetchUsers}/>
+        <SearchBar className=" flex-col gap-2.5 "  refetch={refetch} tagsList={tagsList} authorsList={authorsList} fetchUsers={fetchUsers}/>
       </div>
 
 

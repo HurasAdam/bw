@@ -79,7 +79,7 @@ if(article){
   return (
     <form
       onSubmit={onSubmit}
-      className="form-container grid grid-cols-[7fr_3fr] gap-x-14 gap-y-8 py-10 bg-white w-full h-full"
+      className="form-container grid grid-cols-[7fr_3fr] gap-x-14 gap-y-8 py-10  w-full h-full"
     >
       <div className="flex flex-col gap-10 h-fit">
         <TextBox
@@ -87,9 +87,13 @@ if(article){
           type="text"
           name="title"
           label="Tytuł"
-          className="w-full rounded-lg"
+          className="w-full rounded-lg bg-gray-50 border-0"
           register={register("title", {
             required: "Tytuł jest wymagany",
+            minLength:{
+              value:4,
+              message:"Tytuł powinieć zawierać conajmniej 4 znaki"
+            }
           })}
           error={errors.title ? errors.title.message : ""}
         />
@@ -141,7 +145,7 @@ if(article){
             }}
             id="employeeDescription"
             placeholder="opis dla pracownika HD"
-            className=" border-slate-300   py-2 px-2.5 block w-full rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            className=" border-gray-500/80 bg-gray-50  py-2 px-2.5 block w-full rounded-md border-0  text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             {...register("employeeDescription", {
               required: {
                 value: true,
@@ -172,7 +176,7 @@ if(article){
             }}
             id="clientDescription"
             placeholder="wiadomosc dla klienta"
-            className="w-full  border-zinc-400  py-2  block  rounded-md border-0 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 "
+            className="w-full  border-gray-500/80 bg-gray-50 py-2  block  rounded-md border-0 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 "
             {...register("clientDescription", {
               required: {
                 value: true,
