@@ -17,14 +17,14 @@ import { userApi } from "../services/userApi";
 
 const SearchPage = () => {
   
-const {title,tags,author,setFilters,page,verified} = useArticleFilters();
+const {title,tags,author,setFilters,page,verified,limit} = useArticleFilters();
 
 const {debouncedValue} = useDebounce({value:title,delay:CONSTANTS.DEBOUNCE_DELAY_MS})
 
 console.log(debouncedValue);
 
   const queryParams={
-    page,title:debouncedValue,tags,author,verified
+    page,title:debouncedValue,tags,author,verified,limit
   }
 
 
@@ -66,7 +66,7 @@ console.log(debouncedValue);
       </div>
 
 
-      <div className="flex gap-5 rounded-md">
+      <div className=" flex flex-col-reverse 2xl:flex-row  gap-5 rounded-md">
    
   
 
@@ -97,9 +97,9 @@ console.log(debouncedValue);
         </div>
       )}
 
-<div className="sticky top-[61px]  z-10 w-[380px] px-6 pt-3 pb-4 border   border-gray-300/80 shadow-sm rounded max-h-fit max-w-[380px] min-h-[350px] bg-white">
+<div className="md:sticky static   top-[61px]  z-10 w-[380px] px-6 pt-3 pb-4 border   border-gray-300/80 shadow-sm rounded max-h-fit min-w-full 2xl:min-w-[380px] 2xl:max-w-[380px]   bg-white">
 <h3 className="mb-2.5 text-xl font-semibold font-inter text-gray-800/80">Filtry</h3>
-        <SearchBar className=" flex-col gap-2.5 "  refetch={refetch} tagsList={tagsList} authorsList={authorsList} fetchUsers={fetchUsers}/>
+        <SearchBar className="sm:flex-col lg:flex-row 2xl:flex-col gap-2.5 "  refetch={refetch} tagsList={tagsList} authorsList={authorsList} fetchUsers={fetchUsers}/>
       </div>
 
 

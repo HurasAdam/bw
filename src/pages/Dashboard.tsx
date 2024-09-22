@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import data from "../data";
 import Table from "../components/core/Table";
@@ -12,13 +12,15 @@ import Pagination from "../components/core/Pagination";
 import useArticleFilters from "../hooks/useArticleFilters";
 import PieChart from "../components/core/PieChart";
 import { formatDate } from "../utils";
+import { Link, NavLink } from "react-router-dom";
 
 const Dashboard:React.FC = () => {
-  // const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(5);
+
   const {title,tags,page,author} = useArticleFilters();
   const searchParams = {
     page: page.toString(),
-    title,tags,author
+    title,tags,author,limit
   };
 
   const { data: latestArticles,isLoading } = useQuery({
@@ -35,6 +37,8 @@ const Dashboard:React.FC = () => {
 {/*  */}
       <div className="grid-rows lg:grid grid-cols-[6fr_3fr] gap-6  ">
         <div className=" h-fit rounded flex flex-col ">
+
+          {/* STAT TAILS */}
           <div className="grid grid-cols-3 gap-5 p-1.5">
           <div className="shadow bg-white border border-slate-200 h-28 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter relative">
   <span className="text-[27px] font-bold text-indigo-800 ">44</span>
@@ -59,15 +63,19 @@ const Dashboard:React.FC = () => {
     <MdPending className="text-[20px]"/>
   </span>
 </div>
-
           </div>
+
+<div className="border rounded-md h-44">
+  xd
+</div>
+
 
           <div className="grid grid-rows gap-2 my-12   px-2.5 py-3 rounded-md">
             <h2 className="font-semibold font-inter text-[13px] mb-1.5  text-gray-500">Ostatnio dodane artykuły</h2>
 
 {latestArticles?.data?.map((article)=>{
   return(
-<div className=" px-[18px] pb-4 pt-3 rounded-md flex gap-3.5 flex-col  shadow   bg-white">
+<div className=" px-[18px] pb-4 pt-3 rounded-md flex gap-4 flex-col  shadow   bg-white">
   <div className="flex justify-start ">
   <div className="text-xs text-slate-600">{formatDate(article?.createdAt)}</div>
 
@@ -84,7 +92,7 @@ const Dashboard:React.FC = () => {
     )
   })}
   </div>
-<div className=""><AiFillEye className="text-slate-600/90 text-xl cursor-pointer hover:text-blue-300 transition-all"/></div>
+<Link to={`articles/${article?._id}`} className=""><AiFillEye className="text-slate-600/90 text-xl cursor-pointer hover:text-blue-300 transition-all"/></Link>
   </div>
  
 </div>
