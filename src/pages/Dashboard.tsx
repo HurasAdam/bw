@@ -15,10 +15,10 @@ import { formatDate } from "../utils";
 
 const Dashboard:React.FC = () => {
   // const [page, setPage] = useState<number>(1);
-  const {title,tags,page} = useArticleFilters();
+  const {title,tags,page,author} = useArticleFilters();
   const searchParams = {
     page: page.toString(),
-    title,tags
+    title,tags,author
   };
 
   const { data: latestArticles,isLoading } = useQuery({
