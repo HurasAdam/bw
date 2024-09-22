@@ -215,7 +215,7 @@ const {showModal,closeModal,showToast,showContentModal} = useAppContext();
 if(isFetching && !isLoading){
   return (
     <>
-  <div className="p-12 flex flex-col gap-10">
+  <div className="p-12 flex px-3 flex-col gap-10">
      
      {/* <Modal  verifyModalState={verifyModalState} setVerifyModalState={setVerifyModalState}/> */}
      <div className="text-sm flex flex-col gap-3.5 text-slate-600 font-semibold">
@@ -341,7 +341,7 @@ if (isLoading) {
 
   return (
 
-    <div className="p-12 flex flex-col gap-10">
+    <div className="py-12 px-3 flex flex-col gap-10">
      
       {/* <Modal  verifyModalState={verifyModalState} setVerifyModalState={setVerifyModalState}/> */}
       <div className="text-sm flex flex-col gap-3.5 text-slate-600 font-semibold">

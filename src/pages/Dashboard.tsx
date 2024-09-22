@@ -31,7 +31,7 @@ const Dashboard:React.FC = () => {
 
 
   return (
-    <div className="px-5   pt-6  rounded-lg">
+    <div className="  pt-6  rounded-lg">
 {/*  */}
       <div className="grid-rows lg:grid grid-cols-[6fr_3fr] gap-6  ">
         <div className=" h-fit rounded flex flex-col ">

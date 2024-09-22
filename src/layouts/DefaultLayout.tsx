@@ -57,10 +57,10 @@ const DefaultLayout = () => {
         {/* <MobileSidebar />  */}
 
         <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-white  ">
-          <div className=" bg-slate-50 rounded-tl-2xl rounded-bl-2xl min-h-full h-fit">
+          <div className=" bg-white rounded-tl-2xl rounded-bl-2xl min-h-full h-fit">
             <Navbar notifications={data} />
           <div className=" px-9 mt-4   ">  <Breadcrumbs/></div>
-           <div className="p-4">
+           <div className="py-4 px-14">
            <Outlet />
            </div>
           </div>
