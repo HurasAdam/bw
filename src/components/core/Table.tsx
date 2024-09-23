@@ -30,7 +30,7 @@ const Table: React.FC<TableProps> = ({
   }
 
   return (
-    <div className="overflow-x-auto  border border-gray-200/70 rounded ">
+    <div className="overflow-x-auto  border border-gray-200/90 rounded-lg ">
       <table className="table table-md ">
         <TableHeader
           headers={tableHeaders}

@@ -13,6 +13,7 @@ import useArticleFilters from "../hooks/useArticleFilters";
 import PieChart from "../components/core/PieChart";
 import { formatDate } from "../utils";
 import { Link, NavLink } from "react-router-dom";
+import LinearChart from "../components/core/LinearChart";
 
 const Dashboard:React.FC = () => {
   const [limit, setLimit] = useState<number>(5);
@@ -40,7 +41,7 @@ const Dashboard:React.FC = () => {
 
           {/* STAT TAILS */}
           <div className="grid grid-cols-3 gap-5 p-1.5">
-          <div className="shadow bg-white border border-slate-200 h-28 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter relative">
+          <div className="shadow bg-white border border-slate-200 h-32 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter relative">
   <span className="text-[27px] font-bold text-indigo-800 ">44</span>
   <span className="text-slate-500 font-semibold text-sm ">Liczba wszystkich artykułow</span>
   <span className="absolute top-[-16px] left-2.5 border w-14 h-14 bg-blue-800/90 rounded-lg text-white flex items-center justify-center">
@@ -48,7 +49,7 @@ const Dashboard:React.FC = () => {
   </span>
 </div>
 
-<div className="shadow bg-white border border-slate-200 h-28 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter relative">
+<div className="shadow bg-white border border-slate-200 h-32 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter relative">
   <span className="text-[27px] font-bold text-green-700/80  ">44</span>
   <span className="text-slate-500 font-semibold text-sm ">Liczba wszystkich artykułow</span>
   <span className="absolute top-[-16px] left-2.5 border w-14 h-14 bg-green-800/80 rounded-lg text-white flex items-center justify-center">
@@ -56,7 +57,7 @@ const Dashboard:React.FC = () => {
   </span>
 </div>
 
-<div className="shadow bg-white border border-slate-200 h-28 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter relative">
+<div className="shadow bg-white border border-slate-200 h-32 rounded-md px-5 py-4 flex flex-col justify-center items-center gap-3 font-inter relative">
   <span className="text-[27px] font-bold text-amber-700/80 ">44</span>
   <span className="text-slate-500 font-semibold text-sm ">Liczba wszystkich artykułow</span>
   <span className="absolute top-[-16px] left-2.5 border w-14 h-14 bg-amber-700/80 rounded-lg text-white flex items-center justify-center">
@@ -65,9 +66,6 @@ const Dashboard:React.FC = () => {
 </div>
           </div>
 
-<div className="border rounded-md h-44">
-  xd
-</div>
 
 
           <div className="grid grid-rows gap-2 my-12   px-2.5 py-3 rounded-md">

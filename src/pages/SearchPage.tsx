@@ -61,14 +61,12 @@ console.log(debouncedValue);
     <div className="flex flex-col gap-1  py-3  ">
       
       <h2 className="text-xl font-bold text-gray-600 px-0.5 pt-2 mb-3 flex items-center gap-2"><SiPowerpages className="text-blue-900"/>Baza Arykułów</h2>
-      <div className="bg-sky-50 w-full px-2 py-2 text-sm rounded-md">
-        <span className="font-semibold text-slate-500">Znaleziono<span className="mx-2 text-blue-800 font-bold">{articles?.pagination?.total}</span>Artykułów</span>
-      </div>
+ 
 
 
       <div className=" flex flex-col-reverse 2xl:flex-row  gap-5 rounded-md">
    
-  
+ 
 
 
 
@@ -79,6 +77,9 @@ console.log(debouncedValue);
     </div>
       ) : (
         <div className="flex flex-col gap-2 w-full   ">
+     <div className="w-full px-2 py-2 text-sm rounded-md">
+        <span className="font-semibold text-slate-500">Znaleziono<span className="mx-2 text-blue-800 font-bold">{articles?.pagination?.total}</span>Artykułów</span>
+      </div>
 
           <Table
             headers={data.articleHeaders}
@@ -97,7 +98,7 @@ console.log(debouncedValue);
         </div>
       )}
 
-<div className="md:sticky static   top-[61px]  z-10 w-[380px] px-6 pt-3 pb-4 border   border-gray-300/80 shadow-sm rounded max-h-fit min-w-full 2xl:min-w-[380px] 2xl:max-w-[380px]   bg-white">
+<div className="md:sticky static mt-11  top-[61px]  z-10 w-[380px] px-6 pt-3 pb-4 border   border-gray-200/90 shadow-sm rounded-lg max-h-fit min-w-full 2xl:min-w-[380px] 2xl:max-w-[380px]   bg-white">
 <h3 className="mb-2.5 text-xl font-semibold font-inter text-gray-800/80">Filtry</h3>
         <SearchBar className="sm:flex-col lg:flex-row 2xl:flex-col gap-2.5 "  refetch={refetch} tagsList={tagsList} authorsList={authorsList} fetchUsers={fetchUsers}/>
       </div>

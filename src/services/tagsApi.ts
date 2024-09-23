@@ -28,8 +28,20 @@ const updateTag= async({formData})=>{
     return data;
 };
 
+const deleteTag= async({formData})=>{
+    const config={
+        withCredentials:true
+    }
+
+
+
+    const {data}= await axios.delete(`http://localhost:8000/api/tags/delete/${formData}`,config);
+    return data;
+};
+
 export const tagsApi={
     getAllTags,
     createTag,
-    updateTag
+    updateTag,
+    deleteTag
 }

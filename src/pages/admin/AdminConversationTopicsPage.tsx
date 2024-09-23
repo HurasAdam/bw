@@ -17,7 +17,7 @@ const AdminConversationTopicsPage = () => {
 
 
 
-const {showContentModal,closeContentModal} = useAppContext();
+const {showContentModal,closeContentModal,closeModal,showModal} = useAppContext();
 const queryClient = useQueryClient();
 
 const {data:topics} =useQuery({
@@ -54,6 +54,27 @@ return conversationsTopicsApi.getAllTopics();
           ))
       }
     })
+
+
+
+    const {mutate:deleteConversationTopicMutation} = useMutation({
+      mutationFn:({formData})=>{
+        return conversationsTopicsApi.deleteConversationTopic({formData})
+      },
+      onSuccess:({message})=>{
+        queryClient.invalidateQueries(["topics"]);
+        closeModal();
+        toast.custom((t) => (
+          <ToastVariant t={t} message={message} variant="SUCCESS"/>
+          )) 
+      }
+    })
+
+
+
+
+
+
     
     
     const onSave = ({formData,type}) =>{
@@ -62,6 +83,10 @@ return   createConversationTopicMutation({formData})
       }
       else if (type ==="UPDATE"){
         return updateTagMutation({formData});
+      }else{
+        if(type ==="DELETE"){
+          return deleteConversationTopicMutation({formData})
+        }
       }
     
     }
@@ -94,19 +119,33 @@ return   createConversationTopicMutation({formData})
             <div 
             key={topic?._id}
             className=' 2xl:w-[45%] flex items-center  rounded-xl py-3 px-4 min-h-[58px] shadow-sm border border-gray-400/80'
-            onClick={()=>{
-                showContentModal({
-                    isOpen:true,
-                    childrenComponent:(<ConversationTopicForm topic={topic} onSave={onSave}/>)
-                })
-            }}
+       
             >
          
              <span className='flex-1 font-inter'>{topic?.title}</span>
              <span className='flex-1 text-[13px] text-gray-500 '>{topic?.description}</span>
              <div className='flex-1 flex gap-3 justify-end  '>
-              <button><MdEdit/></button>
-              <button><MdDelete/></button>
+              <button
+              
+              onClick={()=>{
+                showContentModal({
+                    isOpen:true,
+                    childrenComponent:(<ConversationTopicForm topic={topic} onSave={onSave}/>)
+                })
+            }}
+              ><MdEdit/></button>
+              <button
+              
+              onClick={()=>showModal({
+                isOpen:true,
+                header:"Usuń temat rozmowy",
+                description:"Czy na pewno chce usunąć ten ten temat rozmowy?",
+                type:"DANGER",
+                triggerFn:()=>{
+                  onSave({formData:topic._id , type:"DELETE"})
+                }
+              })}
+              ><MdDelete/></button>
               </div>
              
             </div>
