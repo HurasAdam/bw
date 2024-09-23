@@ -14,7 +14,7 @@ const AdminTagsPage = () => {
 
 
 
-const {showContentModal,closeContentModal} = useAppContext();
+const {showContentModal,closeContentModal,showModal,closeModal} = useAppContext();
 const queryClient = useQueryClient();
 
 const {data:tags} =useQuery({
@@ -51,6 +51,20 @@ return tagsApi.getAllTags()
           ))
       }
     })
+
+
+    const {mutate:deleteTagMutation} = useMutation({
+      mutationFn:({formData})=>{
+        return tagsApi.deleteTag({formData})
+      },
+      onSuccess:({message})=>{
+        queryClient.invalidateQueries(["tags"]);
+        closeModal();
+        toast.custom((t) => (
+          <ToastVariant t={t} message={message} variant="SUCCESS"/>
+          )) 
+      }
+    })
     
     
     const onSave = ({formData,type}) =>{
@@ -59,6 +73,9 @@ return   createTagMutation({formData})
       }
       else if (type ==="UPDATE"){
         return updateTagMutation({formData});
+      }
+      else if(type ==="DELETE"){
+        return deleteTagMutation({formData})
       }
     
     }
@@ -106,7 +123,18 @@ return   createTagMutation({formData})
         }}
            />
 
-<MdDelete className='text-rose-600/60 cursor-pointer hover:text-rose-500'/>
+<MdDelete 
+className='text-rose-600/60 cursor-pointer hover:text-rose-500'
+onClick={()=>showModal({
+  isOpen:true,
+  header:"Usuń tag",
+  description:"Czy na pewno chce usunąć ten tag?",
+  type:"DANGER",
+  triggerFn:()=>{
+    onSave({formData:tag._id , type:"DELETE"})
+  }
+})}
+/>
 
 </div>
 
@@ -120,4 +148,13 @@ return   createTagMutation({formData})
   )
 }
 
-export default AdminTagsPage
+export default AdminTagsPage;
+
+// onClick: () => showModal({
+//   isOpen:true, 
+//   header:"Usuń artykuł ", 
+//   description:"Czy jesteś pewien że chcesz usunąć ten artykuł ? Artykuł zostanie bezpowrtonie usunięty.", 
+//   type:"DANGER",
+//   triggerFn:()=>{
+//     deleteArticleMutation({ id})
+// }}),

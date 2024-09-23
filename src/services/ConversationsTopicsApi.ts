@@ -28,8 +28,20 @@ const updateConversationTopic= async({formData})=>{
     return data;
 };
 
+const deleteConversationTopic= async({formData})=>{
+
+
+  
+    const config={
+        withCredentials:true
+    }
+    const {data}= await axios.delete(`http://localhost:8000/api/conversation-topics/delete/${formData}`,config);
+    return data;
+};
+
 export const conversationsTopicsApi={
     getAllTopics,
     createConversationTopic,
-    updateConversationTopic
+    updateConversationTopic,
+    deleteConversationTopic
 }
